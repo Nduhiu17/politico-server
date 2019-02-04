@@ -38,7 +38,7 @@ def post():
             "error": "logoUrl is required"
         }), 400)
     data = request.get_json(force=True)
-    if type(data['name']) == int or type(data['hqaddress']) == int or type(data['logoUrl']) == int:
+    if isinstance(data['name'],int) or isinstance(data['hqaddress'],int)or isinstance(data['logoUrl'],int) == int:
         return make_response(jsonify({
             "status": 400,
             "error": "Post data of type strings"
