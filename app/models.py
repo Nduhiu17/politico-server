@@ -1,9 +1,11 @@
+"""models"""
+
 MOCK_DATABASE = {
     "parties": [],
 }
 
 
-class Party(object):
+class Party:
     """Class to model a party"""
 
     def __init__(self, name, hqaddress, logoUrl):

@@ -1,3 +1,4 @@
+"""views"""
 from flask import make_response, jsonify, Blueprint
 
 from app.models import Party
