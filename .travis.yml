@@ -1,0 +1,27 @@
+#Prgramming language used
+language: python
+#Language version
+python:
+  - "3.6"
+
+env:
+  global:
+  - SECRET_KEY=hii-inafaa-kua-siri
+
+before_script:
+  - chmod +x ./cc-test-reporter
+
+#installing requirements on travis
+install:
+- pip install -r requirements.txt
+- pip install coveralls
+- pip install codeclimate-test-reporter
+
+# command to run tests
+script:
+  - pytest --cov-report term-missing --cov=app
+
+#code to run after tests
+after_success:
+  - coveralls
+  - codeclimate-test-reporter
