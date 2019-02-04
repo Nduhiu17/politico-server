@@ -54,6 +54,11 @@ def post():
             "status": 400,
             "error": "Name should be atleast 5 characters long"
         }), 400)
+    if Party.get_party_by_name(data["name"]):
+        return make_response(jsonify({
+            "status": 409,
+            "error": "Party already registered"
+        }), 409)
 
     name = data["name"]
     hqaddress = data["hqaddress"]
