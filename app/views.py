@@ -13,4 +13,4 @@ def get():
     return make_response(jsonify({
         "status": 200,
         "data": all_parties
-    },200))
+    }))
