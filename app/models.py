@@ -38,3 +38,10 @@ class Party:
         """Method to save a party"""
         MOCK_DATABASE["parties"].append(self)
         return self.json_dumps()
+
+    def get_party_by_name(self,name):
+        """Method to get a party by name"""
+        all_parties = MOCK_DATABASE['parties']
+        for party in all_parties:
+            if party.name == name:
+                return party.json_dumps()
