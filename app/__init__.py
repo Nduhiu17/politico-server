@@ -3,7 +3,7 @@ from flask import Flask
 from flask_cors import CORS
 
 from app.views import version1
-from instance.config import DevelopmentConfig
+from config import DevelopmentConfig
 
 app = Flask(__name__)
 CORS(app)
