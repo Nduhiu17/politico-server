@@ -7,4 +7,4 @@ class TestParties(BaseTestCase):
         """ Test get all political parties"""
         with self.client:
             response = self.client.get('/api/v1/parties')
-            self.assertEqual(response.status, "200 OK")
+            self.assertEqual(response._status_code, 200)
