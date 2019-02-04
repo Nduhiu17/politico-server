@@ -1,0 +1,5 @@
+MOCK_DATABASE = {
+    "parties": [],
+}
+
+
