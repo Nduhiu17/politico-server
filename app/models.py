@@ -33,3 +33,8 @@ class Party:
         for item in all_parties:
             get_all_json.append(item.json_dumps())
         return get_all_json
+
+    def save(self):
+        """Method to save a party"""
+        MOCK_DATABASE["parties"].append(self)
+        return self.json_dumps()
