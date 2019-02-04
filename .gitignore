@@ -114,3 +114,4 @@ __pycache__/
 .coverage
 *.pyc
 .idea/vcs.xml
+start.sh
