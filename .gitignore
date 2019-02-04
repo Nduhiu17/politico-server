@@ -102,3 +102,16 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+virtual/
+
+virtual/
+start.sh
+.vscode/
+__pycache__/
+.pytest_cache/
+.idea/
+.coverage
+*.pyc
+.idea/vcs.xml
+start.sh
