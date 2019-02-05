@@ -46,3 +46,10 @@ class Party:
         for party in all_parties:
             if party.name == name:
                 return party.json_dumps()
+
+    @classmethod
+    def get_party_by_id(cls, id):
+        """Method to get a party by id"""
+        for item in MOCK_DATABASE['parties']:
+            if str(item.id) == id:
+                return item.json_dumps()
