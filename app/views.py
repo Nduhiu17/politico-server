@@ -84,3 +84,46 @@ def get_a_party(id):
         "status": 404,
         "data": "No party found with that id"
     }), 404)
+
+
+@version1.route('/parties/<int:id>/name', methods=['PATCH'])
+def PATCH(id):
+    """End point to modify a party"""
+
+    if not request.json or not 'name' in request.json:
+        return make_response(jsonify({
+            "status": 400,
+            "error": "Party name is required"
+        }), 400)
+
+    data = request.get_json(force=True)
+    if isinstance(data['name'], int):
+        return make_response(jsonify({
+            "status": 400,
+            "error": "Name should be of type strings"
+        }), 400)
+
+    if not Validate.validate_name(name=data["name"]):
+        return make_response(jsonify({
+            "status": 400,
+            "error": "Invalid username"
+        }), 400)
+    if not Validate.validate_name_length(name=data["name"]):
+        return make_response(jsonify({
+            "status": 400,
+            "error": "Name should be atleast 5 characters long"
+        }), 400)
+    if Party.get_party_by_name(data["name"]):
+        return make_response(jsonify({
+            "status": 409,
+            "error": "Party name already taken"
+        }), 409)
+
+    name = data["name"]
+    party_to_edit = Party.get_party_by_id(id=id)
+    new_party = Party(name=name, hqaddress=party_to_edit[0]['hqaddress'],logoUrl=party_to_edit[0]['logoUrl'])
+    new_party.update_party(id=None,name=name, hqaddress=party_to_edit[0]['hqaddress'],logoUrl=party_to_edit[0]['logoUrl'])
+    return make_response(jsonify({
+        "status": 201,
+        "data": new_party.json_dumps()
+    }), 201)
