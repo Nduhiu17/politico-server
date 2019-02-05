@@ -14,7 +14,7 @@ def get():
     return make_response(jsonify({
         "status": 200,
         "data": all_parties
-    }))
+    }), 200)
 
 
 @version1.route('/parties', methods=['POST'])
@@ -38,7 +38,7 @@ def post():
             "error": "logoUrl is required"
         }), 400)
     data = request.get_json(force=True)
-    if isinstance(data['name'],int) or isinstance(data['hqaddress'],int)or isinstance(data['logoUrl'],int) == int:
+    if isinstance(data['name'], int) or isinstance(data['hqaddress'], int) or isinstance(data['logoUrl'], int) == int:
         return make_response(jsonify({
             "status": 400,
             "error": "Post data of type strings"
@@ -69,3 +69,18 @@ def post():
         "status": 201,
         "data": new_party.json_dumps()
     }), 201)
+
+
+@version1.route('/parties/<int:id>', methods=['GET'])
+def get_a_party(id):
+    """End point to get a party by id"""
+    party_retrieved = Party.get_party_by_id(id=id)
+    if party_retrieved:
+        return make_response(jsonify({
+            "status": 200,
+            "data": party_retrieved
+        }))
+    return make_response(jsonify({
+        "status": 404,
+        "data": "No party found with that id"
+    }), 404)
