@@ -1,6 +1,7 @@
 from unittest import TestCase
 
 from app import app
+from app.models import MOCK_DATABASE
 
 
 class BaseTestCase(TestCase):
@@ -14,4 +15,4 @@ class BaseTestCase(TestCase):
 
     def tearDown(self):
         """Method to delete data from data structures"""
-        pass
+        MOCK_DATABASE['parties'].clear()
