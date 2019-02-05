@@ -53,5 +53,7 @@ class TestParties(BaseTestCase):
             self.assertEqual(response._status_code, 201)
             response = self.client.get('api/v1/parties/1',headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 200)
+            response1 = self.client.get('api/v1/parties/10000', headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response1._status_code, 404)
 
 

@@ -14,7 +14,7 @@ def get():
     return make_response(jsonify({
         "status": 200,
         "data": all_parties
-    }))
+    }), 200)
 
 
 @version1.route('/parties', methods=['POST'])
@@ -83,8 +83,4 @@ def get_a_party(id):
     return make_response(jsonify({
         "status": 404,
         "data": "No party found with that id"
-    }))
-
-
-
-
+    }), 404)
