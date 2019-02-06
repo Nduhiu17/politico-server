@@ -42,3 +42,9 @@ party7_to_post = {
     "hqaddress": 12345678,
     "logoUrl": 12344567
 }
+
+party8_to_post = {
+    "name": "Democratedited",
+    "hqaddress": "New yorkedited",
+    "logoUrl": "www.logo.com/logo"
+}

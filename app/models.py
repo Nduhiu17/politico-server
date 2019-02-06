@@ -55,3 +55,13 @@ class Party:
             if item.id == id:
                 list_party_data.append(item.json_dumps())
                 return list_party_data
+
+    def update_party(self, id,name,hqaddress,logoUrl):
+        """Method to get a party by id"""
+        list_party_data = []
+        for item in MOCK_DATABASE['parties']:
+            if item.id == id:
+                party_to_update = Party(name=name,hqaddress=hqaddress,logoUrl=logoUrl)
+                list_party_data.append(party_to_update.json_dumps())
+                return list_party_data
+            return None
