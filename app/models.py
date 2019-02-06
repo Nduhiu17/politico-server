@@ -65,3 +65,10 @@ class Party:
                 list_party_data.append(party_to_update.json_dumps())
                 return list_party_data
             return None
+
+    @classmethod
+    def delete_party(self, id):
+        """Method delete a party"""
+        for item in MOCK_DATABASE['parties']:
+            if item.id == id:
+                MOCK_DATABASE['parties'].remove(item)
