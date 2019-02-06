@@ -2,6 +2,7 @@
 
 MOCK_DATABASE = {
     "parties": [],
+    "offices": [],
 }
 
 
@@ -72,3 +73,36 @@ class Party:
         for item in MOCK_DATABASE['parties']:
             if item.id == id:
                 MOCK_DATABASE['parties'].remove(item)
+
+
+class Office:
+    """Class to model an office"""
+
+    def __init__(self, office_type, name):
+        """Initializing the office class"""
+        self.id = len(MOCK_DATABASE["offices"]) + 1
+        self.office_type = office_type
+        self.name = name
+
+    def json_dumps(self):
+        """method to return a json object from the office details"""
+        office_obj = {
+            "id": str(self.id),
+            "office_type":self.office_type,
+            "name": self.name,
+        }
+        return office_obj
+
+    def save(self):
+        """Method to save a party"""
+        MOCK_DATABASE["offices"].append(self)
+        return self.json_dumps()
+
+    @staticmethod
+    def get_office_by_name(name):
+        """Method to get an office by name"""
+        all_offices = MOCK_DATABASE['offices']
+        for office in all_offices:
+            if office.name == name:
+                return office.json_dumps()
+
