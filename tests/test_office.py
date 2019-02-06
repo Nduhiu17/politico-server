@@ -41,4 +41,5 @@ class TestOffice(BaseTestCase):
         with self.client:
             response = self.client.get('/api/v1/offices')
             self.assertEqual(response._status_code, 200)
+            self.assertIsInstance(response.json['data'],list)
 
