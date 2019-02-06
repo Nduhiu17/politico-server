@@ -51,3 +51,5 @@ class TestOffice(BaseTestCase):
             self.assertEqual(response._status_code, 201)
             response = self.client.get('/api/v1/offices/1')
             self.assertEqual(response._status_code, 200)
+            response = self.client.get('/api/v1/offices/10')
+            self.assertEqual(response._status_code, 404)
