@@ -2,6 +2,7 @@
 
 MOCK_DATABASE = {
     "parties": [],
+    "offices": [],
 }
 
 
@@ -72,3 +73,13 @@ class Party:
         for item in MOCK_DATABASE['parties']:
             if item.id == id:
                 MOCK_DATABASE['parties'].remove(item)
+
+
+class Office:
+    """Class to model an office"""
+
+    def __init__(self, office_type, name):
+        """Initializing the office class"""
+        self.id = len(MOCK_DATABASE["offices"]) + 1
+        self.office_typ = office_type
+        self.name = name
