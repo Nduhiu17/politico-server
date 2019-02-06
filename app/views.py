@@ -121,9 +121,28 @@ def PATCH(id):
 
     name = data["name"]
     party_to_edit = Party.get_party_by_id(id=id)
-    new_party = Party(name=name, hqaddress=party_to_edit[0]['hqaddress'],logoUrl=party_to_edit[0]['logoUrl'])
-    new_party.update_party(id=None,name=name, hqaddress=party_to_edit[0]['hqaddress'],logoUrl=party_to_edit[0]['logoUrl'])
+    new_party = Party(name=name, hqaddress=party_to_edit[0]['hqaddress'], logoUrl=party_to_edit[0]['logoUrl'])
+    new_party.update_party(id=None, name=name, hqaddress=party_to_edit[0]['hqaddress'],
+                           logoUrl=party_to_edit[0]['logoUrl'])
     return make_response(jsonify({
         "status": 201,
         "data": new_party.json_dumps()
     }), 201)
+
+
+@version1.route('/parties/<int:id>', methods=['DELETE'])
+def delete(id):
+    """End point to delete a party"""
+    party_to_delete = Party.get_party_by_id(id=id)
+    if party_to_delete:
+        Party.delete_party(id=id)
+        return make_response(jsonify({
+            "message": "deleted"
+        }), 204)
+    return make_response(jsonify({
+        "status": 404,
+        "error": "No party found with that id"
+    }), 404)
+
+
+
