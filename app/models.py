@@ -83,3 +83,18 @@ class Office:
         self.id = len(MOCK_DATABASE["offices"]) + 1
         self.office_type = office_type
         self.name = name
+
+    def json_dumps(self):
+        """method to return a json object from the office details"""
+        office_obj = {
+            "id": str(self.id),
+            "office_type":self.office_type,
+            "name": self.name,
+        }
+        return office_obj
+
+    def save(self):
+        """Method to save a party"""
+        MOCK_DATABASE["offices"].append(self)
+        return self.json_dumps()
+
