@@ -160,7 +160,7 @@ def post():
     if not request.json or not 'office_type' in request.json:
         return make_response(jsonify({
             "status": 400,
-            "error": "Office is required"
+            "error": "Office type is required"
         }), 400)
 
     data = request.get_json(force=True)
@@ -180,7 +180,11 @@ def post():
             "status": 400,
             "error": "Name should be atleast 5 characters long"
         }), 400)
-
+    if Office.get_office_by_name(name=data["name"]):
+        return make_response(jsonify({
+            "status": 409,
+            "error": "Office already registered"
+        }), 409)
     name = data["name"]
     office_type = data["office_type"]
     new_office = Office(office_type=office_type,name=name)

@@ -98,3 +98,11 @@ class Office:
         MOCK_DATABASE["offices"].append(self)
         return self.json_dumps()
 
+    @staticmethod
+    def get_office_by_name(name):
+        """Method to get an office by name"""
+        all_offices = MOCK_DATABASE['offices']
+        for office in all_offices:
+            if office.name == name:
+                return office.json_dumps()
+

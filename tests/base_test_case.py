@@ -16,3 +16,4 @@ class BaseTestCase(TestCase):
     def tearDown(self):
         """Method to delete data from data structures"""
         MOCK_DATABASE['parties'].clear()
+        MOCK_DATABASE['offices'].clear()

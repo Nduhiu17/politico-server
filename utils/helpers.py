@@ -5,7 +5,7 @@ party_to_post = {
 }
 
 party1_to_post = {
-    "name":"Ken",
+    "name": "Ken",
     "hqaddress": "New york",
     "logoUrl": "www.logo.com/logo"
 }
@@ -51,5 +51,33 @@ party8_to_post = {
 
 office_to_post = {
     "office_type": "federal",
-    "name":"Democrat"
+    "name": "Democrat"
+}
+
+office1_to_post = {
+    "office_type": "federal"
+}
+
+office2_to_post = {
+    "name": "Democrat"
+}
+
+office3_to_post = {
+    "office_type": 12345678,
+    "name": "Democratic republic"
+}
+
+office4_to_post = {
+    "office_type": "Federal",
+    "name": 123456789
+}
+
+office5_to_post = {
+    "office_type": "federal",
+    "name": "demo"
+}
+
+office6_to_post = {
+    "office_type": "federal",
+    "name": "Demo"
 }
