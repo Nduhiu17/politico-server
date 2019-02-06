@@ -36,3 +36,9 @@ class TestOffice(BaseTestCase):
                                         headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 409)
 
+    def test_get_offices(self):
+        """ Test get all political offices"""
+        with self.client:
+            response = self.client.get('/api/v1/offices')
+            self.assertEqual(response._status_code, 200)
+
