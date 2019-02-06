@@ -48,3 +48,8 @@ party8_to_post = {
     "hqaddress": "New yorkedited",
     "logoUrl": "www.logo.com/logo"
 }
+
+office_to_post = {
+    "office_type": "federal",
+    "name":"Democrat"
+}

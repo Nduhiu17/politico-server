@@ -81,5 +81,5 @@ class Office:
     def __init__(self, office_type, name):
         """Initializing the office class"""
         self.id = len(MOCK_DATABASE["offices"]) + 1
-        self.office_typ = office_type
+        self.office_type = office_type
         self.name = name
