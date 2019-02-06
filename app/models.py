@@ -115,3 +115,12 @@ class Office:
             get_all_json.append(item.json_dumps())
         return get_all_json
 
+    @classmethod
+    def get_office_by_id(cls, id):
+        """Method to get an office by id"""
+        list_office_data = []
+        for item in MOCK_DATABASE['offices']:
+            if item.id == id:
+                list_office_data.append(item.json_dumps())
+                return list_office_data
+
