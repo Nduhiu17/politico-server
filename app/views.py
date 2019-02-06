@@ -203,3 +203,18 @@ def get():
         "status": 200,
         "data": all_offices
     }), 200)
+
+
+@V1.route('/offices/<int:id>', methods=['GET'])
+def get_an_office(id):
+    """End point to get an office by id"""
+    retrieved_office = Office.get_office_by_id(id=id)
+    if retrieved_office:
+        return make_response(jsonify({
+            "status": 200,
+            "data": retrieved_office
+        }))
+    return make_response(jsonify({
+        "status": 404,
+        "data": "No office found with that id"
+    }), 404)
