@@ -41,5 +41,13 @@ class TestOffice(BaseTestCase):
         with self.client:
             response = self.client.get('/api/v1/offices')
             self.assertEqual(response._status_code, 200)
-            self.assertIsInstance(response.json['data'],list)
+            self.assertIsInstance(response.json['data'], list)
 
+    def test_get_an_office(self):
+        """ Test get a single political office"""
+        with self.client:
+            response = self.client.post('api/v1/offices', data=json.dumps(office_to_post),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 201)
+            response = self.client.get('/api/v1/offices/1')
+            self.assertEqual(response._status_code, 200)
