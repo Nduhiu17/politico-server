@@ -106,3 +106,12 @@ class Office:
             if office.name == name:
                 return office.json_dumps()
 
+    @classmethod
+    def get_all_offices(cls):
+        """method to get all offices"""
+        all_offices = MOCK_DATABASE['offices']
+        get_all_json = []
+        for item in all_offices:
+            get_all_json.append(item.json_dumps())
+        return get_all_json
+
