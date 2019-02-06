@@ -65,4 +65,21 @@ class TestParties(BaseTestCase):
             response = self.client.patch('api/v1/parties/1/name', data=json.dumps(party8_to_post),
                                         headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 201)
+            response = self.client.patch('api/v1/parties/1/name', data=json.dumps(party4_to_post),
+                                         headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+            response = self.client.patch('api/v1/parties/1/name', data=json.dumps(party7_to_post),
+                                         headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+            response = self.client.patch('api/v1/parties/1/name', data=json.dumps(party3_to_post),
+                                         headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+            response = self.client.patch('api/v1/parties/1/name', data=json.dumps(party1_to_post),
+                                         headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+            response = self.client.patch('api/v1/parties/1/name', data=json.dumps(party_to_post),
+                                         headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 409)
+
+
 
