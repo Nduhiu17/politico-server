@@ -81,5 +81,14 @@ class TestParties(BaseTestCase):
                                          headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 409)
 
+    def test_delete_party(self):
+        """Tests for deleting a political party"""
+        response = self.client.post('api/v1/parties', data=json.dumps(party_to_post),
+                                    headers={'Content-Type': 'application' '/json'})
+        self.assertEqual(response._status_code, 201)
+        response = self.client.delete('api/v1/parties/1',headers={'Content-Type': 'application' '/json'})
+        self.assertEqual(response._status_code, 204)
+        self.assertEqual(response.message, "deleted")
+
 
 
