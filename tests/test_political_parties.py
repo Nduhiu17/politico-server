@@ -87,9 +87,9 @@ class TestParties(BaseTestCase):
                                     headers={'Content-Type': 'application' '/json'})
         self.assertEqual(response._status_code, 201)
         response = self.client.delete('api/v1/parties/1',headers={'Content-Type': 'application' '/json'})
-        self.assertEqual(response._status_code, 204)
+        self.assertEqual(response.json['status'], 204)
         response = self.client.delete('api/v1/parties/10', headers={'Content-Type': 'application' '/json'})
-        self.assertEqual(response._status_code, 404)
+        self.assertEqual(response.json['status'], 404)
 
 
 

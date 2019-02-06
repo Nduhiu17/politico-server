@@ -137,8 +137,9 @@ def delete(id):
     if party_to_delete:
         Party.delete_party(id=id)
         return make_response(jsonify({
+            "status":204,
             "message": "deleted"
-        }), 204)
+        }))
     return make_response(jsonify({
         "status": 404,
         "error": "No party found with that id"
