@@ -5,7 +5,7 @@ from app.models import Party, Office
 from utils.input_validators import Validate
 
 version1 = Blueprint('api-v1', __name__, url_prefix='/api/v1')
-V1 = Blueprint('api-version1',__name__,url_prefix='/api/v1')
+V1 = Blueprint('api-version1', __name__, url_prefix='/api/v1')
 
 
 @version1.route('/parties', methods=['GET'])
@@ -187,9 +187,19 @@ def post():
         }), 409)
     name = data["name"]
     office_type = data["office_type"]
-    new_office = Office(office_type=office_type,name=name)
+    new_office = Office(office_type=office_type, name=name)
     new_office.save()
     return make_response(jsonify({
         "status": 201,
         "data": new_office.json_dumps()
     }), 201)
+
+
+@V1.route('/offices', methods=['GET'])
+def get():
+    """End point to get all offices"""
+    all_offices = Office.get_all_offices()
+    return make_response(jsonify({
+        "status": 200,
+        "data": all_offices
+    }), 200)
