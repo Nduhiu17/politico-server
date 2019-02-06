@@ -87,7 +87,7 @@ def get_a_party(id):
 
 
 @version1.route('/parties/<int:id>/name', methods=['PATCH'])
-def PATCH(id):
+def patch(id):
     """End point to modify a party"""
 
     if not request.json or not 'name' in request.json:
@@ -143,6 +143,3 @@ def delete(id):
         "status": 404,
         "error": "No party found with that id"
     }), 404)
-
-
-
