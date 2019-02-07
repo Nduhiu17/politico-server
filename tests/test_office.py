@@ -8,30 +8,66 @@ from utils.helpers import office_to_post, office1_to_post, office2_to_post, offi
 class TestOffice(BaseTestCase):
     """Test case class for political parties"""
 
+    def post_office(self):
+        response = self.client.post(path='api/v1/offices', data=json.dumps(office_to_post),
+                                    content_type='application/json')
+        return response
+
     def test_create_office(self):
         """Test to create a political office"""
         with self.client:
-            response = self.client.post('api/v1/offices', data=json.dumps(office_to_post),
-                                        headers={'Content-Type': 'application' '/json'})
+            response = self.post_office()
             self.assertEqual(response._status_code, 201)
             response = self.client.post('api/v1/offices', data=json.dumps(office1_to_post),
                                         headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 400)
+
+    def test_post_with_no_name(self):
+        """Test posting with no name"""
+        with self.client:
+            response = self.client.post('api/v1/offices', data=json.dumps(office1_to_post),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+
+    def test_post_with_no_office_type(self):
+        """Test posting with no office type"""
+        with self.client:
             response = self.client.post('api/v1/offices', data=json.dumps(office2_to_post),
                                         headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 400)
+
+    def test_post_with_integer_office_type(self):
+        """Test posting with office type data of type integer"""
+        with self.client:
             response = self.client.post('api/v1/offices', data=json.dumps(office3_to_post),
                                         headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 400)
+
+    def test_post_with_integer_name(self):
+        """Test posting with office name data of type integer"""
+        with self.client:
             response = self.client.post('api/v1/offices', data=json.dumps(office4_to_post),
                                         headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 400)
-            response = self.client.post('api/v1/offices', data=json.dumps(office5_to_post),
-                                        headers={'Content-Type': 'application' '/json'})
-            self.assertEqual(response._status_code, 400)
+
+    def test_post_with_short_name(self):
+        """Test posting with a short name"""
+        with self.client:
             response = self.client.post('api/v1/offices', data=json.dumps(office6_to_post),
                                         headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 400)
+
+    def test_post_with_invalid_name(self):
+        """Test posting with a short name"""
+        with self.client:
+            response = self.client.post('api/v1/offices', data=json.dumps(office5_to_post),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+
+    def test_posting_already_registered_party(self):
+        """Test posting an already posted party"""
+        with self.client:
+            self.post_office()
             response = self.client.post('api/v1/offices', data=json.dumps(office_to_post),
                                         headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 409)
@@ -46,10 +82,12 @@ class TestOffice(BaseTestCase):
     def test_get_an_office(self):
         """ Test get a single political office"""
         with self.client:
-            response = self.client.post('api/v1/offices', data=json.dumps(office_to_post),
-                                        headers={'Content-Type': 'application' '/json'})
-            self.assertEqual(response._status_code, 201)
+            self.post_office()
             response = self.client.get('/api/v1/offices/1')
             self.assertEqual(response._status_code, 200)
-            response = self.client.get('/api/v1/offices/10')
+
+    def test_get_non_existing_office(self):
+        """ Test get non existing office"""
+        with self.client:
+            response = self.client.get('/api/v1/offices/1')
             self.assertEqual(response._status_code, 404)
