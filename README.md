@@ -46,39 +46,39 @@ Please click [Github Link](https://github.com/Nduhiu17/politico-server/tree/deve
 **On your terminal:**
 
 Install pip:
+Install
+Install sudo apt-get install python-pip
+Install
+- Clone this repository:
 
-  $ sudo apt-get install python-pip
+        $ git clone https://github.com/Nduhiu17/politico-server.git
 
-Clone this repository:
+- Get into the root directory:
 
-  $ git clone https://github.com/Nduhiu17/politico-server.git
+        $ cd politico-server/
 
-Get into the root directory:
+- Install virtual enviroment:
 
-  $ cd politico-server/
+        $ python3.6 -m venv virtual
 
-Install virtual enviroment:
+- Activate the virtual environment:
 
-    $ python3.6 -m venv virtual
-
-Activate the virtual environment:
-
-    $ source virtual/bin/activate
+        $ source virtual/bin/activate
   
-Install requirements
+- Install requirements
 
-    $ pip install -r requirements.txt
+        $ pip install -r requirements.txt
 
 
 
-Run the app by:
+- Run the app by:
 
-    $ python manage.py server
+        $ python manage.py server
 
 ### Running the tests
 
 Export server's secret key to the environment by:
-    $ export SECRET_KEY='set-your-secret-key-here'
+     $ export SECRET_KEY='set-your-secret-key-here'
 
 
 Run the tests by:
