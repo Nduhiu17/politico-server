@@ -16,4 +16,3 @@ app.register_blueprint(V1)
 @app.route("/")
 def index():
     return render_template("docs.html")
-

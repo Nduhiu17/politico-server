@@ -158,3 +158,9 @@ class TestParties(BaseTestCase):
         self.post_party()
         response = self.client.delete('api/v1/parties/10', headers={'Content-Type': 'application' '/json'})
         self.assertEqual(response.json['status'], 404)
+
+    def test_docs(self):
+        """Test documentation link"""
+        with self.client:
+            response = self.client.get('/', headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 200)
