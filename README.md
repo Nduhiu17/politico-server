@@ -23,8 +23,8 @@ Please click [Github Link](https://github.com/Nduhiu17/politico-server/tree/deve
 | ------ | ---------------------------------------------       | --------------------------------    |
 | POST   | /api/v1/parties                                 |End point to create a party       |
 | GET   | /api/v1/parties                                  | Endpoint to get all parties       |
-| GET   | /api/v1/parties<int:partyid>                                   | End point to get a specific political party               |
-| DELETE    | /api/v1/parties<int:partyid>                                   | Delete a specific party                 |
+| GET   | /api/v1/parties/<int:partyid>                                   | End point to get a specific political party               |
+| DELETE    | /api/v1/parties/<int:partyid>                                   | Delete a specific party                 |
 | PATCH    | /api/v1/parties/<int:partyid>/name                 | Update a specific party name             |
 | GET    | /api/v1/offices                | Get all offices      |
 | POST   | /api/v1/offices       | Post an office        |
