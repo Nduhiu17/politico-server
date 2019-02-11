@@ -53,7 +53,7 @@ def post():
     if not Validate.validate_name_length(name=data["name"]):
         return make_response(jsonify({
             "status": 400,
-            "error": "Name should be atleast 5 characters long"
+            "error": "Name should be atleast 1 character long"
         }), 400)
     if Party.get_party_by_name(data["name"]):
         return make_response(jsonify({
@@ -112,7 +112,7 @@ def patch(id):
     if not Validate.validate_name_length(name=data["name"]):
         return make_response(jsonify({
             "status": 400,
-            "error": "Name should be atleast 5 characters long"
+            "error": "Name should be atleast 1 character long"
         }), 400)
     if Party.get_party_by_name(data["name"]):
         return make_response(jsonify({

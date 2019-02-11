@@ -14,8 +14,8 @@ class Validate:
 
     @staticmethod
     def validate_name_length(name):
-        """Method to check name should be more than four characters"""
-        if len(name) < 5:
+        """Method to check name should be more than one characters"""
+        if len(name) < 2:
             return False
         return True
 

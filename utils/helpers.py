@@ -5,7 +5,7 @@ party_to_post = {
 }
 
 party1_to_post = {
-    "name": "Ken",
+    "name": "K",
     "hqaddress": "New york",
     "logoUrl": "www.logo.com/logo"
 }
@@ -79,6 +79,11 @@ office5_to_post = {
 
 office6_to_post = {
     "office_type": "federal",
-    "name": "Demo"
+    "name": "D"
 }
 
+
+office_to_post8 = {
+    "office_type": 1223345,
+    "name": "Democrat"
+}
