@@ -1,8 +1,7 @@
 import json
 
 from tests.base_test_case import BaseTestCase
-from utils.helpers import party_to_post, party1_to_post, party2_to_post, party3_to_post, party4_to_post, party5_to_post, \
-    party6_to_post, party7_to_post, party8_to_post
+from utils.helpers import party_to_post, party4_to_post, party5_to_post,party6_to_post, party7_to_post, party8_to_post
 
 
 class TestParties(BaseTestCase):
@@ -15,7 +14,8 @@ class TestParties(BaseTestCase):
             self.assertEqual(response._status_code, 200)
 
     def post_party(self):
-        response = self.client.post(path='api/v1/parties', data=json.dumps(party_to_post), content_type='application/json')
+        response = self.client.post(path='api/v1/parties', data=json.dumps(party_to_post),
+                                    content_type='application/json')
         return response
 
     def test_create_party(self):
@@ -23,27 +23,6 @@ class TestParties(BaseTestCase):
         with self.client:
             response = self.post_party()
             self.assertEqual(response._status_code, 201)
-
-    def test_post_short_name(self):
-        """Test post short name"""
-        with self.client:
-            response = self.client.post('api/v1/parties', data=json.dumps(party1_to_post),
-                                        headers={'Content-Type': 'application' '/json'})
-            self.assertEqual(response._status_code, 400)
-
-    def test_post_invalid_name(self):
-        """Test post invalid name"""
-        with self.client:
-            response = self.client.post('api/v1/parties', data=json.dumps(party2_to_post),
-                                        headers={'Content-Type': 'application' '/json'})
-            self.assertEqual(response._status_code, 400)
-
-    def test_post_invalid_logourl(self):
-        """Test post invalid name"""
-        with self.client:
-            response = self.client.post('api/v1/parties', data=json.dumps(party3_to_post),
-                                        headers={'Content-Type': 'application' '/json'})
-            self.assertEqual(response._status_code, 400)
 
     def test_post_with_no_name(self):
         """Test posting with no name"""
@@ -120,22 +99,6 @@ class TestParties(BaseTestCase):
         with self.client:
             self.post_party()
             response = self.client.patch('api/v1/parties/1/name', data=json.dumps(party7_to_post),
-                                         headers={'Content-Type': 'application' '/json'})
-            self.assertEqual(response._status_code, 400)
-
-    def test_edit_party_with_invalid_name(self):
-        """Tests for editing a political party with no name"""
-        with self.client:
-            self.post_party()
-            response = self.client.patch('api/v1/parties/1/name', data=json.dumps(party3_to_post),
-                                         headers={'Content-Type': 'application' '/json'})
-            self.assertEqual(response._status_code, 400)
-
-    def test_edit_party_with_short_name(self):
-        """Tests for editing a political party with no name"""
-        with self.client:
-            self.post_party()
-            response = self.client.patch('api/v1/parties/1/name', data=json.dumps(party1_to_post),
                                          headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 400)
 

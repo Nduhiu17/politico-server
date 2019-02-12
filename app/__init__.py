@@ -15,6 +15,7 @@ app.register_blueprint(V1)
 
 @app.errorhandler(405)
 def handle_405_error(e):
+    """Handling 405 error"""
     return jsonify({
         "status": 405,
         "message": "method not allowed"
@@ -23,6 +24,7 @@ def handle_405_error(e):
 
 @app.errorhandler(404)
 def handle_404_error(e):
+    """Handling 404 error"""
     return jsonify({
         "status": 404,
         "message": "Not found"
@@ -31,6 +33,7 @@ def handle_404_error(e):
 
 @app.errorhandler(503)
 def handle_503_error(e):
+    """Handling 503 error"""
     return jsonify({
         "status": 503,
         "message": "Service unavailable"
@@ -39,6 +42,7 @@ def handle_503_error(e):
 
 @app.errorhandler(400)
 def handle_400_error(e):
+    """Handling 400 error"""
     return jsonify({
         "status": 400,
         "message": "Bad request.Please try again"
@@ -47,6 +51,7 @@ def handle_400_error(e):
 
 @app.errorhandler(408)
 def handle_408_error(e):
+    """Handling 408 error"""
     return jsonify({
         "status": 408,
         "message": "Request time out"
@@ -55,6 +60,7 @@ def handle_408_error(e):
 
 @app.errorhandler(429)
 def handle_429_error(e):
+    """Handling 429 error"""
     return jsonify({
         "status": 429,
         "message": "Too Many Requests"
