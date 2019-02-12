@@ -69,9 +69,10 @@ Install
 
         $ pip install -r requirements.txt
 
+-Export server's secret key by:
+        $ export SECRET_KEY='set-your-secret-key-here'
 
-
-- Run the app by:
+- Run the server by:
 
         $ python manage.py server
 

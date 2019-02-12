@@ -82,8 +82,9 @@ office6_to_post = {
     "name": "D"
 }
 
-
 office_to_post8 = {
     "office_type": 1223345,
     "name": "Democrat"
 }
+
+offices_allowed = ["federal", "legislative", "state", "local government"]

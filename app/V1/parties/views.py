@@ -45,16 +45,6 @@ def post():
             "error": "Post data of type strings"
         }), 400)
 
-    if not Validate.validate_name(name=data["name"]):
-        return make_response(jsonify({
-            "status": 400,
-            "error": "Invalid username"
-        }), 400)
-    if not Validate.validate_name_length(name=data["name"]):
-        return make_response(jsonify({
-            "status": 400,
-            "error": "Name should be atleast 1 character long"
-        }), 400)
     if Party.get_party_by_name(data["name"]):
         return make_response(jsonify({
             "status": 409,
@@ -64,6 +54,23 @@ def post():
     name = data["name"]
     hqaddress = data["hqaddress"]
     logoUrl = data["logoUrl"]
+
+    if Validate.validate_empty_string(data_inputed=name):
+        return make_response(jsonify({
+            "status": 400,
+            "error": "Party name cannot be empty"
+        }), 400)
+    if Validate.validate_empty_string(data_inputed=hqaddress):
+        return make_response(jsonify({
+            "status": 400,
+            "error": "hqaddress cannot be empty"
+        }), 400)
+    if Validate.validate_empty_string(data_inputed=logoUrl):
+        return make_response(jsonify({
+            "status": 400,
+            "error": "logoUrl cannot be empty"
+        }), 400)
+
     new_party = Party(name=name, hqaddress=hqaddress, logoUrl=logoUrl)
     new_party.save()
     return make_response(jsonify({
@@ -104,30 +111,22 @@ def patch(id):
             "error": "Name should be of type strings"
         }), 400)
 
-    if not Validate.validate_name(name=data["name"]):
-        return make_response(jsonify({
-            "status": 400,
-            "error": "Invalid username"
-        }), 400)
-    if not Validate.validate_name_length(name=data["name"]):
-        return make_response(jsonify({
-            "status": 400,
-            "error": "Name should be atleast 1 character long"
-        }), 400)
     if Party.get_party_by_name(data["name"]):
         return make_response(jsonify({
             "status": 409,
             "error": "Party name already taken"
         }), 409)
-
-    name = data["name"]
-    party_to_edit = Party.get_party_by_id(id=id)
-    new_party = Party(name=name, hqaddress=party_to_edit[0]['hqaddress'], logoUrl=party_to_edit[0]['logoUrl'])
-    new_party.update_party(id=None, name=name, hqaddress=party_to_edit[0]['hqaddress'],
-                           logoUrl=party_to_edit[0]['logoUrl'])
+    if Validate.validate_empty_string(data_inputed=data["name"]):
+        return make_response(jsonify({
+            "status": 400,
+            "error": "Party name cannot be empty"
+        }), 400)
+    update_data = request.get_json(force=True)
+    party_to_edit = Party.get_party_by_id(id=id)[0]
+    party_to_edit = Party.update_party(update_data=update_data,id=id)
     return make_response(jsonify({
         "status": 201,
-        "data": new_party.json_dumps()
+        "data": party_to_edit
     }), 201)
 
 

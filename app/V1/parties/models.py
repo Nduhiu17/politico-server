@@ -56,15 +56,14 @@ class Party:
                 list_party_data.append(item.json_dumps())
                 return list_party_data
 
-    def update_party(self, id, name, hqaddress, logoUrl):
-        """Method to get a party by id"""
-        list_party_data = []
+    @staticmethod
+    def update_party(update_data, id):
+        """ Edit apolitical party """
         for item in all_parties_retrieved:
             if item.id == id:
-                party_to_update = Party(name=name, hqaddress=hqaddress, logoUrl=logoUrl)
-                list_party_data.append(party_to_update.json_dumps())
-                return list_party_data
-            return None
+                item.name = update_data["name"]
+
+        return [{"id": id, "name": update_data["name"]}]
 
     @classmethod
     def delete_party(cls, id):
@@ -72,4 +71,3 @@ class Party:
         for item in all_parties_retrieved:
             if item.id == id:
                 all_parties_retrieved.remove(item)
-

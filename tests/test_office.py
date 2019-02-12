@@ -1,8 +1,7 @@
 import json
 
 from tests.base_test_case import BaseTestCase
-from utils.helpers import office_to_post, office1_to_post, office2_to_post, office4_to_post, office3_to_post, \
-    office5_to_post, office6_to_post
+from utils.helpers import office_to_post, office1_to_post, office2_to_post, office4_to_post, office3_to_post
 
 
 class TestOffice(BaseTestCase):
@@ -47,20 +46,6 @@ class TestOffice(BaseTestCase):
         """Test posting with office name data of type integer"""
         with self.client:
             response = self.client.post('api/v1/offices', data=json.dumps(office4_to_post),
-                                        headers={'Content-Type': 'application' '/json'})
-            self.assertEqual(response._status_code, 400)
-
-    def test_post_with_short_name(self):
-        """Test posting with a short name"""
-        with self.client:
-            response = self.client.post('api/v1/offices', data=json.dumps(office6_to_post),
-                                        headers={'Content-Type': 'application' '/json'})
-            self.assertEqual(response._status_code, 400)
-
-    def test_post_with_invalid_name(self):
-        """Test posting with a short name"""
-        with self.client:
-            response = self.client.post('api/v1/offices', data=json.dumps(office5_to_post),
                                         headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 400)
 

@@ -2,7 +2,7 @@
 from flask import make_response, jsonify, Blueprint, request
 
 from app.V1.offices.models import Office
-
+from utils.helpers import offices_allowed
 from utils.input_validators import Validate
 
 V1 = Blueprint('api-version1', __name__, url_prefix='/api/v1')
@@ -31,16 +31,6 @@ def post():
             "error": "Post data of type strings"
         }), 400)
 
-    if not Validate.validate_name(name=data["name"]):
-        return make_response(jsonify({
-            "status": 400,
-            "error": "Invalid name"
-        }), 400)
-    if not Validate.validate_name_length(name=data["name"]):
-        return make_response(jsonify({
-            "status": 400,
-            "error": "Name should be atleast 1 character long"
-        }), 400)
     if Office.get_office_by_name(name=data["name"]):
         return make_response(jsonify({
             "status": 409,
@@ -48,6 +38,27 @@ def post():
         }), 409)
     name = data["name"]
     office_type = data["office_type"]
+    if office_type not in offices_allowed:
+        return make_response(jsonify({
+            "status": 400,
+            "error": "That office type is not allowed"
+        }), 400)
+    if Office.get_office_by_name(data["name"]):
+        return make_response(jsonify({
+            "status": 409,
+            "error": "Office already registered"
+        }), 409)
+    if Validate.validate_empty_string(data_inputed=data["name"]):
+        return make_response(jsonify({
+            "status": 400,
+            "error": "Office name cannot be empty"
+        }), 400)
+    if Validate.validate_empty_string(data_inputed=data["office_type"]):
+        return make_response(jsonify({
+            "status": 400,
+            "error": "Party name cannot be empty"
+        }), 400)
+
     new_office = Office(office_type=office_type, name=name)
     new_office.save()
     return make_response(jsonify({
