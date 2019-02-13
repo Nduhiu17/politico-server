@@ -18,6 +18,7 @@ class BaseTestCase(TestCase):
         """Method to delete data from data structures"""
         MOCK_DATABASE['parties'].clear()
         OFFICE_MOCK_DATABASE['offices'].clear()
+        Database.drop_database_tables()
         Database.create_users_tables()
         Database.create_parties_table()
         Database.create_offices_table()
