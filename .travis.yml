@@ -7,13 +7,13 @@ python:
 env:
   global:
   - SECRET_KEY=hii-inafaa-kua-siri
+  - DATABASE_URL="postgres://testuser:password@localhost:5432/politico_test_db"
 
 before_script:
-  -psql -c 'create database politico_test;' -U postgres
+  - psql -c 'create database politico_test_db;' -U postgres
   - psql -c "create user testuser with PASSWORD 'password';" -U postgres
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-
   - chmod +x ./cc-test-reporter
 
 #installing requirements on travis
