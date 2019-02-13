@@ -88,3 +88,14 @@ office_to_post8 = {
 }
 
 offices_allowed = ["federal", "legislative", "state", "local government"]
+
+user = {
+    "firstname": "Antony",
+    "lastname": "Nduhiu",
+    "othername": "Mundia",
+    "email": "nduhiu@gmail.com",
+    "phonenumber": "0722117264",
+    "passporturl": "www.passport.com/photo",
+    "password": "Password2015"
+
+}
