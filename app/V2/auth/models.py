@@ -1,4 +1,5 @@
 """user models comes here"""
+from attr import dataclass
 from flask_jwt_extended import create_access_token
 from passlib.handlers.pbkdf2 import pbkdf2_sha256
 
@@ -10,44 +11,32 @@ cursor = Database.connect_to_db()
 Database.create_users_tables()
 
 
+@dataclass
 class User:
     """Class that models a user"""
+    id: str
+    firstname: str
+    lastname: str
+    othername: str
+    email: str
+    phonenumber: str
+    passporturl: str
+    password: str
+    date_created: str
+    date_modified: str
 
-    def __init__(self, id, firstname, lastname, othername, email, phonenumber, passporturl, password,
-                 date_created,
-                 date_modified):
-        """Initializing user class"""
-        self.id = id
-        self.firstname = firstname
-        self.lastname = lastname
-        self.othername = othername
-        self.email = email
-        self.phonenumber = phonenumber
-        self.passporturl = passporturl
-        self.password = password
-        self.date_created = date_created
-        self.date_modified = date_modified
-
-    def save(self, firstname, lastname, othername, email, phonenumber, passporturl, password):
+    def save(self, *args):
         """method to save a user"""
+        self.firstname, self.lastname, self.othername, self.email, self.phonenumber, self.passporturl, self.password, self.date_created, self.date_modified = args
         format_str = f"""
                  INSERT INTO public.users (firstname,lastname,othername,email,phonenumber,passporturl,password,date_created,date_modified)
-                 VALUES ('{firstname}','{lastname}','{othername}','{email}','{phonenumber}','{passporturl}','{password}','{(
+                 VALUES ('{args[0]}','{args[1]}','{args[2]}','{args[3]}','{args[4]}','{args[5]}','{args[6]}','{(
             datetime.now())}','{(datetime.now())}');
                  """
         cursor.execute(format_str)
-        return {
-            "id": self.id,
-            "firstname": firstname,
-            "lastname": lastname,
-            "email": email,
-            "phonenumber": phonenumber,
-            "passporturl": passporturl,
-            "date_created": self.date_created,
-            "date_modified": self.date_modified
-        }
 
     def json_dump(self):
+        """method that returns a user json"""
         return {
             "firstname": self.firstname,
             "lastname": self.lastname,
@@ -66,6 +55,7 @@ class User:
 
     @staticmethod
     def generate_token(email):
+        """Method that generates user token"""
         access_token = create_access_token(email)
         return access_token
 

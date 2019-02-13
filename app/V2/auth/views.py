@@ -3,8 +3,10 @@ from datetime import datetime
 
 from flask import Blueprint, request, make_response, jsonify
 
+
 from app.V2.auth.models import User
 from utils.input_validators import Validate
+
 
 auth_route = Blueprint('auth-v2', __name__, url_prefix='/api/v2/auth')
 
@@ -12,43 +14,11 @@ auth_route = Blueprint('auth-v2', __name__, url_prefix='/api/v2/auth')
 @auth_route.route('/signup', methods=['POST'])
 def post():
     """End point to post a political party"""
-
-    if not request.json or not 'firstname' in request.json:
+    data = request.get_json(force=True)
+    if len(data) < 7:
         return make_response(jsonify({
             "status": 400,
-            "error": "First name is required"
-        }), 400)
-
-    if not request.json or not 'lastname' in request.json:
-        return make_response(jsonify({
-            "status": 400,
-            "error": "Last name is required"
-        }), 400)
-    if not request.json or not 'othername' in request.json:
-        return make_response(jsonify({
-            "status": 400,
-            "error": "othername is required"
-        }), 400)
-    if not request.json or not 'email' in request.json:
-        return make_response(jsonify({
-            "status": 400,
-            "error": "Email is required"
-        }), 400)
-    if not request.json or not 'phonenumber' in request.json:
-        return make_response(jsonify({
-            "status": 400,
-            "error": "Phone number is required"
-        }), 400)
-    if not request.json or not 'passporturl' in request.json:
-        return make_response(jsonify({
-            "status": 400,
-            "error": "Passporturl is required"
-        }), 400)
-
-    if not request.json or not 'password' in request.json:
-        return make_response(jsonify({
-            "status": 400,
-            "error": "Password is required"
+            "error": "firstname,lastname,othername,email,phonenumber,passporturl and password are required"
         }), 400)
 
     data = request.get_json(force=True)
@@ -85,8 +55,8 @@ def post():
                     phonenumber=phonenumber,
                     passporturl=passporturl, password=password, date_created=datetime.now(),
                     date_modified=datetime.now())
-    new_user.save(firstname=firstname, lastname=lastname, othername=othername, email=email, phonenumber=phonenumber,
-                  passporturl=passporturl, password=User.generate_hash(password=password))
+    new_user.save(firstname, lastname, othername, email, phonenumber, passporturl, password, datetime.now(),
+                  datetime.now())
 
     access_token = User.generate_token(email=data["email"])
 
