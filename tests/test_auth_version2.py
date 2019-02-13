@@ -2,7 +2,7 @@
 import json
 
 from tests.base_test_case import BaseTestCase
-from utils.helpers import user
+from utils.helpers import user, user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11
 
 
 class TestAuth(BaseTestCase):
@@ -14,3 +14,51 @@ class TestAuth(BaseTestCase):
             response = self.client.post('api/v2/auth/signup', data=json.dumps(user),
                                         headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 201)
+
+    def test_registering_email_twice(self):
+        """Test registering email twice"""
+        with self.client:
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(user),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 201)
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(user),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 409)
+
+    def test_registering_with_no_data(self):
+        """Test registering email twice"""
+        with self.client:
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(user1),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(user2),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(user3),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(user4),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(user5),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(user6),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(user7),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(user8),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(user9),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(user10),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(user11),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+

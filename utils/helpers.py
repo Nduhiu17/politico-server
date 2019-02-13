@@ -90,12 +90,114 @@ office_to_post8 = {
 offices_allowed = ["federal", "legislative", "state", "local government"]
 
 user = {
-    "firstname": "Antony",
-    "lastname": "Nduhiu",
-    "othername": "Mundia",
-    "email": "nduhiu@gmail.com",
-    "phonenumber": "0722117264",
-    "passporturl": "www.passport.com/photo",
+    "firstname": "Antony1",
+    "lastname": "Nduhiu1",
+    "othername": "Mundia1",
+    "email": "nduhiu@gmail1.com",
+    "phonenumber": "07221172641",
+    "passporturl": "www.passport.com/ph1oto",
+    "password": "Password2015"
+}
+
+user1 = {
+    "lastname": "Nduhiu1",
+    "othername": "Mundia1",
+    "email": "nduhiu@gmail10.com",
+    "phonenumber": "07221172641",
+    "passporturl": "www.passport.com/ph1oto",
     "password": "Password2015"
 
+}
+
+user2 = {
+    "firstname": "Antony1",
+    "othername": "Mundia1",
+    "email": "nduhiu@gmail100.com",
+    "phonenumber": "07221172641",
+    "passporturl": "www.passport.com/ph1oto",
+    "password": "Password2015"
+
+}
+user3 = {
+    "firstname": "Antony1",
+    "lastname": "Nduhiu1",
+    "email": "nduhiu@gmail1000.com",
+    "phonenumber": "07221172641",
+    "passporturl": "www.passport.com/ph1oto",
+    "password": "Password2015"
+
+}
+
+user4 = {
+    "firstname": "Antony1",
+    "lastname": "Nduhiu1",
+    "email": "nduhiu@gmail10000.com",
+    "phonenumber": "07221172641",
+    "passporturl": "www.passport.com/ph1oto",
+    "password": "Password2015"
+
+}
+
+user5 = {
+    "firstname": "Antony1",
+    "lastname": "Nduhiu1",
+    "phonenumber": "07221172641",
+    "passporturl": "www.passport.com/ph1oto",
+    "password": "Password2015"
+
+}
+
+
+user6 = {
+    "firstname": "Antony1",
+    "lastname": "Nduhiu1",
+    "othername": "Mundia1",
+    "email": "nduhiu@gmail1.com",
+    "phonenumber": "07221172641",
+    "password": "Password2015"
+}
+
+user7 = {
+    "firstname": "Antony1",
+    "lastname": "Nduhiu1",
+    "othername": "Mundia1",
+    "email": "nduhiu@gmccail1.com",
+    "password": "Password2015"
+}
+
+user8 = {
+    "firstname": "Antony1",
+    "lastname": "Nduhiu1",
+    "othername": "Mundia1",
+    "phonenumber": "07221172641",
+    "passporturl": "www.passport.com/ph1oto",
+    "password": "Password2015"
+}
+
+user9 = {
+    "firstname": "Antony1",
+    "lastname": "Nduhiu1",
+    "othername": "Mundia1",
+    "email": "nduhiu@gmail1.com",
+    "phonenumber": "07221172641",
+    "passporturl": "www.passport.com/ph1oto"
+}
+
+user10 = {
+    "firstname": 1245665665,
+    "lastname": 465456456456,
+    "othername": 4565464564654,
+    "email": 14514361414,
+    "phonenumber": 456444456346436,
+    "passporturl": 336456465464654
+}
+
+user11 = {
+    "firstname": "Antony1",
+    "lastname": "Nduhiu1",
+    "othername": "Mundia1",
+    "email": "nduhiugmail1com",
+    "phonenumber": "07221172641",
+    "passporturl": "www.passport.com/ph1oto",
+    "password": "Password2015"
 }
