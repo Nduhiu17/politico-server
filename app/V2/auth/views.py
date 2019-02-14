@@ -103,5 +103,6 @@ def login():
     return make_response(jsonify({
         "status": 201,
         "data": logged_user.json_dump(),
-        "access_token": access_token
+        "access_token": access_token,
+        "message":"logged in"
     }), 201)
