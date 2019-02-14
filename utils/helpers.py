@@ -147,7 +147,6 @@ user5 = {
 
 }
 
-
 user6 = {
     "firstname": "Antony1",
     "lastname": "Nduhiu1",
@@ -202,3 +201,17 @@ user11 = {
     "password": "Password2015"
 }
 
+user12 = {
+    "email": "nduhiugmail1com"
+}
+
+user13 = {
+    "email": 545645646545645465465,
+    "password": 1654654564564564564564
+
+}
+
+user14 = {
+    "email": "nduhiu@gmgfhfghfail10.com",
+    "password": "Password2015"
+}

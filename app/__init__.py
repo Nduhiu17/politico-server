@@ -12,6 +12,7 @@ app = Flask(__name__)
 CORS(app)
 jwt = JWTManager(app)
 app.config.from_object(DevelopmentConfig)
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = False
 app.register_blueprint(version1)
 app.register_blueprint(V1)
 app.register_blueprint(auth_route)

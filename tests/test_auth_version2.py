@@ -2,14 +2,15 @@
 import json
 
 from tests.base_test_case import BaseTestCase
-from utils.helpers import user, user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11
+from utils.helpers import user, user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12, \
+    user13, user14
 
 
 class TestAuth(BaseTestCase):
     """Test case class for auth operations"""
 
-    def test_create_office(self):
-        """Test to create a political office"""
+    def test_user_can_sign_up(self):
+        """Test to create a user"""
         with self.client:
             response = self.client.post('api/v2/auth/signup', data=json.dumps(user),
                                         headers={'Content-Type': 'application' '/json'})
@@ -61,4 +62,31 @@ class TestAuth(BaseTestCase):
             response = self.client.post('api/v2/auth/signup', data=json.dumps(user11),
                                         headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 400)
+
+    def test_user_can_login(self):
+        """Test to create a political office"""
+        with self.client:
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(user),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 201)
+            response = self.client.post('api/v2/auth/login', data=json.dumps(user),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 201)
+
+    def test_login_with_inadequate_data(self):
+        """Test to create a political office"""
+        with self.client:
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(user),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 201)
+            response = self.client.post('api/v2/auth/login', data=json.dumps(user12),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+            response = self.client.post('api/v2/auth/login', data=json.dumps(user13),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+            response = self.client.post('api/v2/auth/login', data=json.dumps(user14),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 404)
+
 
