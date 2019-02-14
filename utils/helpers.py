@@ -1,3 +1,5 @@
+import json
+
 party_to_post = {
     "name": "Democrat",
     "hqaddress": "New york",
@@ -215,3 +217,12 @@ user14 = {
     "email": "nduhiu@gmgfhfghfail10.com",
     "password": "Password2015"
 }
+
+
+def signup_user(self):
+    """function that registers a user"""
+    return self.client.post(
+        'api/v2/auth/signup',
+        data=json.dumps(user),
+        content_type='application/json'
+    )
