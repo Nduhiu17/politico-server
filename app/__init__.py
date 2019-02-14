@@ -6,7 +6,9 @@ from flask_jwt_extended import JWTManager
 from app.V1.offices.views import V1
 from app.V1.parties.views import version1
 from app.V2.auth.views import auth_route
+from app.V2.database.db import Database
 from app.V2.parties.views import base_v2
+from app.V2.permissions.user_permissions import Permission
 from config import DevelopmentConfig
 
 app = Flask(__name__)
@@ -18,8 +20,9 @@ app.register_blueprint(version1)
 app.register_blueprint(V1)
 app.register_blueprint(auth_route)
 app.register_blueprint(base_v2)
-
 jwt._set_error_handler_callbacks(base_v2)
+
+Permission.make_permissions()
 
 
 @app.errorhandler(405)
