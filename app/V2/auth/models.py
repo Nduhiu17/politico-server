@@ -68,3 +68,9 @@ class User:
             return list(user)
         except Exception:
             return False
+
+    @staticmethod
+    def verify_hashed_password(password, hashed_password):
+        """Method to verify password with the hashed password"""
+        return pbkdf2_sha256.verify(password, hashed_password)
+

@@ -8,6 +8,7 @@ env:
   global:
   - SECRET_KEY=hii-inafaa-kua-siri
   - DATABASE_URL="postgres://testuser:password@localhost:5432/politico_test_db"
+  - JWT_SECRET_KEY=this-is-secret
 
 before_script:
   - psql -c 'create database politico_test_db;' -U postgres
