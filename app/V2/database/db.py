@@ -133,30 +133,30 @@ class Database:
         """Method to destroy database tables"""
         cursor = Database.connect_to_db()
         # drop users table
-        sql_command = """ DROP TABLE  users CASCADE;
+        sql_command = """ DROP TABLE IF EXISTS users CASCADE;
             """
         cursor.execute(sql_command)
         # drop parties table
-        sql_command = """ DROP TABLE  parties CASCADE;
+        sql_command = """ DROP TABLE IF EXISTS parties CASCADE;
                    """
         cursor.execute(sql_command)
         # drop offices table
-        sql_command = """ DROP TABLE offices CASCADE;
+        sql_command = """ DROP TABLE IF EXISTS offices CASCADE;
                         """
         cursor.execute(sql_command)
         # drop candidates table
-        sql_command = """ DROP TABLE  candidates CASCADE;
+        sql_command = """ DROP TABLE IF EXISTS candidates CASCADE;
                               """
         cursor.execute(sql_command)
         # drop votes table
-        sql_command = """ DROP TABLE  votes CASCADE;
+        sql_command = """ DROP TABLE IF EXISTS votes CASCADE;
                                     """
         cursor.execute(sql_command)
         # drop permissions table
-        sql_command = """ DROP TABLE  permissions CASCADE;
+        sql_command = """ DROP TABLE IF EXISTS permissions CASCADE;
                                            """
         cursor.execute(sql_command)
         # drop userpermissions table
-        sql_command = """ DROP TABLE  userpermissions CASCADE;
+        sql_command = """ DROP TABLE IF EXISTS userpermissions CASCADE;
                                                   """
         cursor.execute(sql_command)
