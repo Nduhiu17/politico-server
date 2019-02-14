@@ -107,7 +107,6 @@ class Database:
         sql_command = """CREATE TABLE IF NOT EXISTS "public"."permissions" (
              id SERIAL ,
              name VARCHAR(255) NOT NULL,
-             permission_id INTEGER NOT NULL,
              PRIMARY KEY (id)
                  )
                  """

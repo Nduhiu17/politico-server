@@ -74,3 +74,16 @@ class User:
         """Method to verify password with the hashed password"""
         return pbkdf2_sha256.verify(password, hashed_password)
 
+    @classmethod
+    def get_user_by_id(cls, id):
+        """method to find a user by id"""
+        try:
+            cursor.execute("select * from users where id = %s", (id,))
+            retrieved_user = list(cursor.fetchone())
+            user = User(id=retrieved_user[0], firstname=retrieved_user[1],lastname=retrieved_user[2],othername=retrieved_user[3], email=retrieved_user[4],phonenumber=retrieved_user[5],passporturl=retrieved_user[6],
+                        password=retrieved_user[7], date_created=retrieved_user[8],date_modified=retrieved_user[9])
+
+            return user
+        except Exception:
+            return False
+
