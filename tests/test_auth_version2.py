@@ -8,8 +8,8 @@ from utils.helpers import user, user1, user2, user3, user4, user5, user6, user7,
 class TestAuth(BaseTestCase):
     """Test case class for auth operations"""
 
-    def test_create_office(self):
-        """Test to create a political office"""
+    def test_user_can_sign_up(self):
+        """Test to create a user"""
         with self.client:
             response = self.client.post('api/v2/auth/signup', data=json.dumps(user),
                                         headers={'Content-Type': 'application' '/json'})
@@ -61,4 +61,14 @@ class TestAuth(BaseTestCase):
             response = self.client.post('api/v2/auth/signup', data=json.dumps(user11),
                                         headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 400)
+
+    def test_user_can_login(self):
+        """Test to create a political office"""
+        with self.client:
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(user),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 201)
+            response = self.client.post('api/v2/auth/login', data=json.dumps(user),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 201)
 
