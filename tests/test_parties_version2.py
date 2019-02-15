@@ -23,3 +23,4 @@ class TestParty(BaseTestCase):
         with self.client:
             response = self.client.get('api/v2/parties', headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 401)
+

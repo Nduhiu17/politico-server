@@ -11,7 +11,7 @@ This Application is developed using python pure [Flask](http://flask.pocoo.org/d
 
 
 ### Heroku Link
-Please click [Heroku Link](https://politico-version1.herokuapp.com/) to view api documentation and heroku api link
+Please click [Heroku Link](https://politico-api-server.herokuapp.com/) to view api documentation and heroku api link
 
 ### Git hub Link
 Please click [Github Link](https://github.com/Nduhiu17/politico-server/tree/develop) to view api the hosted source code on github.
@@ -21,10 +21,10 @@ Please click [Github Link](https://github.com/Nduhiu17/politico-server/tree/deve
 
 | METHOD | ENDPOINT                                            | DESCRIPTION                         |
 | ------ | ---------------------------------------------       | --------------------------------    |
-| POST   | /api/v1/parties                                 |End point to create a party       |
-| GET   | /api/v1/parties                                  | Endpoint to get all parties       |
-| GET   | /api/v1/parties/<int:partyid>                                   | End point to get a specific political party               |
-| DELETE    | /api/v1/parties/<int:partyid>                                   | Delete a specific party                 |
+| POST   | /api/v1/parties                                     |End point to create a party          |
+| GET    | /api/v1/parties                                     | Endpoint to get all parties         |
+| GET    | /api/v1/parties/<int:partyid>                       | End point to get a specific political party|
+| DELETE    | /api/v1/parties/<int:partyid>                    | Delete a specific party             |
 | PATCH    | /api/v1/parties/<int:partyid>/name                 | Update a specific party name             |
 | GET    | /api/v1/offices                | Get all offices      |
 | POST   | /api/v1/offices       | Post an office        |
@@ -85,6 +85,90 @@ Export server's secret key to the environment by:
 Run the tests by:
 
     $ pytest
+
+# VERSION TWO
+
+### Endpoints
+
+| METHOD | ENDPOINT                                            | DESCRIPTION                         |
+| ------ | ---------------------------------------------       | --------------------------------    |
+| POST   | /api/v2/auth/signup                                 |End point to register a user         |
+| POST   | /api/v2/auth/login                                  | Endpoint to login a user            |
+| GET    | /api/v2/parties                                     | End point to get all parties        |
+
+### Getting Started with version two:
+
+**To start the app, please follow the instructions below:**
+
+**On your terminal:**
+
+Install pip:
+Install
+Install sudo apt-get install python-pip
+Install
+- Clone this repository:
+
+        $ git clone https://github.com/Nduhiu17/politico-server.git
+
+- Get into the root directory:
+
+        $ cd politico-server/
+
+- Install virtual enviroment:
+
+        $ python3.6 -m venv virtual
+
+- Activate the virtual environment:
+
+        $ source virtual/bin/activate
+  
+- Install requirements
+
+        $ pip install -r requirements.txt
+
+- Create postgress databases by running the following commands:
+
+        $ psql
+
+        $ CREATE DATABASE yourdbname WITH PASSWORD yourpassword
+
+        $ CREATE DATABASE yourtestdbname WITH PASSWORD yourpassword
+
+-Export server's secret key by:
+
+        $ export SECRET_KEY='set-your-secret-key-here'
+
+-Export server's JWT SECRET KEY by:
+
+        $ export JWT_SECRET_KEY='set-your-secret-key-here'
+
+-Export server's DATABASE URL by:
+
+        $ export DATABASE_URL='postgres://yourdbusername:yourdbpassword@localhost:5432/yourdbname'
+
+
+- Run the server by:
+
+        $ python manage.py server
+
+### Running the tests
+
+-Export server's secret key to the environment by:
+
+        $ export SECRET_KEY='set-your-secret-key-here'
+
+-Export server's JWT SECRET KEY by:
+
+        $ export JWT_SECRET_KEY='set-your-secret-key-here'
+
+-Export test DATABASE URL by:
+
+        $ export DATABASE_URL='postgres://yourdbusername:yourdbpassword@localhost:5432/yourtestdbname'
+
+
+Run the tests by:
+
+         $ pytest
 
 ### Author
 Antony Mundia
