@@ -47,13 +47,19 @@ def post():
     email = data["email"]
     phonenumber = data["phonenumber"]
     passporturl = data["passporturl"]
+    roles = data["roles"]
     password = data["password"]
+    if Validate.validate_empty_string(firstname) or Validate.validate_empty_string(lastname) or Validate.validate_empty_string(othername) or Validate.validate_empty_string(email) or Validate.validate_empty_string(phonenumber) or Validate.validate_empty_string(passporturl) or Validate.validate_empty_string(password) or Validate.validate_empty_string(roles):
+        return make_response(jsonify({
+            "status": 400,
+            "error": "Empty strings are not allowed"
+        }), 400)
 
     new_user = User(id=None, firstname=firstname, lastname=lastname, othername=othername, email=email,
                     phonenumber=phonenumber,
-                    passporturl=passporturl, password=User.generate_hash(password=password), date_created=datetime.now(),
+                    passporturl=passporturl, roles=roles,password=User.generate_hash(password=password), date_created=datetime.now(),
                     date_modified=datetime.now())
-    new_user.save(firstname, lastname, othername, email, phonenumber, passporturl, User.generate_hash(password=password), datetime.now(),
+    new_user.save(firstname, lastname, othername, email, phonenumber, passporturl, roles,User.generate_hash(password=password), datetime.now(),
                   datetime.now())
 
     access_token = User.generate_token(email=data["email"])
@@ -84,6 +90,12 @@ def login():
             "error": "Post data of type strings"
         }), 400)
 
+    if Validate.validate_empty_string(data['email']) or Validate.validate_empty_string(data['password']):
+        return make_response(jsonify({
+            "status": 400,
+            "error": "Empty strings are not allowed"
+        }), 400)
+
     if not Validate.validate_email_format(email=data["email"]):
         return make_response(jsonify({
             "status": 400,
@@ -97,12 +109,12 @@ def login():
             "error": "User not yet registered"
         }), 404)
 
-    if User.verify_hashed_password(data['password'], current_user[7]):
+    if User.verify_hashed_password(data['password'], current_user[8]):
         access_token = User.generate_token(email=data["email"])
-    logged_user = User(id=current_user[0],firstname=current_user[1],lastname=current_user[2],othername=current_user[3],email=current_user[4],phonenumber=current_user[5],passporturl=current_user[6],password=current_user[7],date_created=current_user[8],date_modified=current_user[9])
+    logged_user = User(id=current_user[0],firstname=current_user[1],lastname=current_user[2],othername=current_user[3],email=current_user[4],phonenumber=current_user[5],passporturl=current_user[6],roles=current_user[7],password=current_user[8],date_created=current_user[9],date_modified=current_user[10])
     return make_response(jsonify({
-        "status": 201,
+        "status": 200,
         "data": logged_user.json_dump(),
         "access_token": access_token,
         "message":"logged in"
-    }), 201)
+    }), 200)

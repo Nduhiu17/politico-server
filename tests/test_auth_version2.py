@@ -3,7 +3,7 @@ import json
 
 from tests.base_test_case import BaseTestCase
 from utils.helpers import user, user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12, \
-    user13, user14
+    user13, user14, user15, user16
 
 
 class TestAuth(BaseTestCase):
@@ -71,7 +71,7 @@ class TestAuth(BaseTestCase):
             self.assertEqual(response._status_code, 201)
             response = self.client.post('api/v2/auth/login', data=json.dumps(user),
                                         headers={'Content-Type': 'application' '/json'})
-            self.assertEqual(response._status_code, 201)
+            self.assertEqual(response._status_code, 200)
 
     def test_login_with_inadequate_data(self):
         """Test to create a political office"""
@@ -88,5 +88,11 @@ class TestAuth(BaseTestCase):
             response = self.client.post('api/v2/auth/login', data=json.dumps(user14),
                                         headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 404)
+            response = self.client.post('api/v2/auth/login', data=json.dumps(user15),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+            response = self.client.post('api/v2/auth/login', data=json.dumps(user16),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
 
 

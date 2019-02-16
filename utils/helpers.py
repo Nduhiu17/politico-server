@@ -98,34 +98,41 @@ user = {
     "email": "nduhiu@gmail1.com",
     "phonenumber": "07221172641",
     "passporturl": "www.passport.com/ph1oto",
+    "roles": "voter",
     "password": "Password2015"
 }
 
 user1 = {
+    "firstname": "",
     "lastname": "Nduhiu1",
     "othername": "Mundia1",
     "email": "nduhiu@gmail10.com",
     "phonenumber": "07221172641",
     "passporturl": "www.passport.com/ph1oto",
+    "roles": "voter",
     "password": "Password2015"
 
 }
 
 user2 = {
     "firstname": "Antony1",
+    "lastname": "",
     "othername": "Mundia1",
     "email": "nduhiu@gmail100.com",
     "phonenumber": "07221172641",
     "passporturl": "www.passport.com/ph1oto",
+    "roles": "voter",
     "password": "Password2015"
 
 }
 user3 = {
     "firstname": "Antony1",
     "lastname": "Nduhiu1",
+    "othername": "",
     "email": "nduhiu@gmail1000.com",
     "phonenumber": "07221172641",
     "passporturl": "www.passport.com/ph1oto",
+    "roles": "voter",
     "password": "Password2015"
 
 }
@@ -133,9 +140,11 @@ user3 = {
 user4 = {
     "firstname": "Antony1",
     "lastname": "Nduhiu1",
+    "othername": "",
     "email": "nduhiu@gmail10000.com",
     "phonenumber": "07221172641",
     "passporturl": "www.passport.com/ph1oto",
+    "roles": "voter",
     "password": "Password2015"
 
 }
@@ -143,8 +152,11 @@ user4 = {
 user5 = {
     "firstname": "Antony1",
     "lastname": "Nduhiu1",
+    "othername": "",
+    "email": "",
     "phonenumber": "07221172641",
     "passporturl": "www.passport.com/ph1oto",
+    "roles": "voter",
     "password": "Password2015"
 
 }
@@ -163,6 +175,7 @@ user7 = {
     "lastname": "Nduhiu1",
     "othername": "Mundia1",
     "email": "nduhiu@gmccail1.com",
+    "roles": "voter",
     "password": "Password2015"
 }
 
@@ -170,8 +183,10 @@ user8 = {
     "firstname": "Antony1",
     "lastname": "Nduhiu1",
     "othername": "Mundia1",
+    "email": "nducczxchiugmail1com",
     "phonenumber": "07221172641",
     "passporturl": "www.passport.com/ph1oto",
+    "roles": "voter",
     "password": "Password2015"
 }
 
@@ -181,7 +196,9 @@ user9 = {
     "othername": "Mundia1",
     "email": "nduhiu@gmail1.com",
     "phonenumber": "07221172641",
-    "passporturl": "www.passport.com/ph1oto"
+    "passporturl": "www.passport.com/ph1oto",
+    "password": "",
+    "roles": "voter"
 }
 
 user10 = {
@@ -190,7 +207,9 @@ user10 = {
     "othername": 4565464564654,
     "email": 14514361414,
     "phonenumber": 456444456346436,
-    "passporturl": 336456465464654
+    "passporturl": 336456465464654,
+    "password": "",
+    "roles": "voter"
 }
 
 user11 = {
@@ -200,6 +219,7 @@ user11 = {
     "email": "nduhiugmail1com",
     "phonenumber": "07221172641",
     "passporturl": "www.passport.com/ph1oto",
+    "roles": "voter",
     "password": "Password2015"
 }
 
@@ -217,6 +237,17 @@ user14 = {
     "email": "nduhiu@gmgfhfghfail10.com",
     "password": "Password2015"
 }
+user15 = {
+    "email": "",
+    "password": ""
+}
+
+user16 = {
+    "email": "nduhiugmgfhfghfail10.com",
+    "password": "Password2015"
+}
+
+
 
 
 def signup_user(self):
