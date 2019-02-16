@@ -21,16 +21,17 @@ class User:
     email: str
     phonenumber: str
     passporturl: str
+    roles:str
     password: str
     date_created: str
     date_modified: str
 
     def save(self, *args):
         """method to save a user"""
-        self.firstname, self.lastname, self.othername, self.email, self.phonenumber, self.passporturl, self.password, self.date_created, self.date_modified = args
+        self.firstname, self.lastname, self.othername, self.email, self.phonenumber, self.passporturl,self.roles, self.password, self.date_created, self.date_modified = args
         format_str = f"""
-                 INSERT INTO public.users (firstname,lastname,othername,email,phonenumber,passporturl,password,date_created,date_modified)
-                 VALUES ('{args[0]}','{args[1]}','{args[2]}','{args[3]}','{args[4]}','{args[5]}','{args[6]}','{(
+                 INSERT INTO public.users (firstname,lastname,othername,email,phonenumber,passporturl,roles,password,date_created,date_modified)
+                 VALUES ('{args[0]}','{args[1]}','{args[2]}','{args[3]}','{args[4]}','{args[5]}','{args[6]}','{args[7]}','{(
             datetime.now())}','{(datetime.now())}');
                  """
         cursor.execute(format_str)
@@ -44,6 +45,7 @@ class User:
             "email": self.email,
             "phonenumber": self.phonenumber,
             "passporturl": self.passporturl,
+            "roles":self.roles,
             "date_created": self.date_created,
             "date_modified": self.date_modified
         }
@@ -74,16 +76,4 @@ class User:
         """Method to verify password with the hashed password"""
         return pbkdf2_sha256.verify(password, hashed_password)
 
-    @classmethod
-    def get_user_by_id(cls, id):
-        """method to find a user by id"""
-        try:
-            cursor.execute("select * from users where id = %s", (id,))
-            retrieved_user = list(cursor.fetchone())
-            user = User(id=retrieved_user[0], firstname=retrieved_user[1],lastname=retrieved_user[2],othername=retrieved_user[3], email=retrieved_user[4],phonenumber=retrieved_user[5],passporturl=retrieved_user[6],
-                        password=retrieved_user[7], date_created=retrieved_user[8],date_modified=retrieved_user[9])
-
-            return user
-        except Exception:
-            return False
 

@@ -5,7 +5,6 @@ from app.V2.database.db import Database
 
 cursor = Database.connect_to_db()
 Database.create_parties_table()
-Database.create_permissions_table()
 
 
 @dataclass

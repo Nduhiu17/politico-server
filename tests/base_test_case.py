@@ -23,6 +23,4 @@ class BaseTestCase(TestCase):
         Database.create_parties_table()
         Database.create_offices_table()
         Database.create_candidates_table()
-        Database.create_permissions_table()
         Database.create_votes_table()
-        Database.create_user_permissions_table()

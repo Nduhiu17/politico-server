@@ -3,6 +3,7 @@ import re
 
 class Validate:
     """Class for validating data input"""
+
     @staticmethod
     def validate_empty_string(data_inputed):
         """Checks if data presented by a user is empty."""
@@ -17,5 +18,4 @@ class Validate:
         if re.match(regex, email, re.IGNORECASE):
             return True
         return False
-
 
