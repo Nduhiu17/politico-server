@@ -248,12 +248,40 @@ user16 = {
 }
 
 
-
-
 def signup_user(self):
     """function that registers a user"""
     return self.client.post(
         'api/v2/auth/signup',
         data=json.dumps(user),
+        content_type='application/json'
+    )
+
+
+party_to_post_empty = {
+    "name": "",
+    "hqaddress": "",
+    "logoUrl": "",
+    "slogan": ""
+}
+
+admin = {
+    "firstname": "Admin",
+    "lastname": "Admin",
+    "othername": "Admin",
+    "email": "admin@gmail.com",
+    "phonenumber": "07221172641",
+    "passporturl": "www.passport.com/ph1oto",
+    "nationalid": "123abc",
+    "county": "nairobi",
+    "roles": "admin",
+    "password": "Password2015"
+}
+
+
+def signup_admin(self):
+    """function that registers an admin"""
+    return self.client.post(
+        'api/v2/auth/signup',
+        data=json.dumps(admin),
         content_type='application/json'
     )
