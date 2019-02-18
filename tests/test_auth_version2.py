@@ -3,7 +3,7 @@ import json
 
 from tests.base_test_case import BaseTestCase
 from utils.helpers import user, user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12, \
-    user13, user14, user15, user16
+    user13, user14, user15, user16, user31, user32
 
 
 class TestAuth(BaseTestCase):
@@ -16,7 +16,7 @@ class TestAuth(BaseTestCase):
                                         headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 201)
 
-    def test_registering_email_twice(self):
+    def test_registering_data_twice(self):
         """Test registering email twice"""
         with self.client:
             response = self.client.post('api/v2/auth/signup', data=json.dumps(user),
@@ -62,6 +62,15 @@ class TestAuth(BaseTestCase):
             response = self.client.post('api/v2/auth/signup', data=json.dumps(user11),
                                         headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 400)
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(user32),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(user),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 201)
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(user31),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 409)
 
     def test_user_can_login(self):
         """Test to create a political office"""
