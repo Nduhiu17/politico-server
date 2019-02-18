@@ -62,7 +62,7 @@ class Party:
             retrieved_party = cursor.fetchone()
             retrieved_party = Party(id=retrieved_party[0], name=retrieved_party[1], hqaddress=retrieved_party[2],
                                     logoUrl=retrieved_party[3], slogan=retrieved_party[4],
-                                    date_created=retrieved_party[4],
+                                    date_created=retrieved_party[5],
                                     date_modified=retrieved_party[6])
             return retrieved_party.json_dumps()
         except Exception:

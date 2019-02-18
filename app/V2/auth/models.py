@@ -82,7 +82,7 @@ class User:
 
     @classmethod
     def find_by_nationaid(cls, id):
-        """This method gets a user using email"""
+        """This method gets a user using nationalid"""
         try:
             cursor.execute("select * from users where nationalid = %s", (id,))
             user = cursor.fetchone()
