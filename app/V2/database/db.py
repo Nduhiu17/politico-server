@@ -63,6 +63,8 @@ class Database:
         id SERIAL ,
         name VARCHAR(255) NOT NULL,
         office_type VARCHAR(255) NOT NULL,
+        date_created VARCHAR(80),
+        date_modified VARCHAR(80),
         PRIMARY KEY (id) 
             )
             """

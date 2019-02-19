@@ -79,8 +79,13 @@ party8_to_post = {
 
 office_to_post = {
     "office_type": "federal",
-    "name": "Democrat"
+    "name": "governor"
 }
+office_to_post23 = {
+    "office_type": "legislative",
+    "name": "governor"
+}
+
 
 office1_to_post = {
     "office_type": "federal"
@@ -91,13 +96,13 @@ office2_to_post = {
 }
 
 office3_to_post = {
-    "office_type": 12345678,
+    "office_type": "fdgfdgfdgdgdgfdgfd",
     "name": "Democratic republic"
 }
 
 office4_to_post = {
     "office_type": "Federal",
-    "name": 123456789
+    "name": "hhjkhjkhjkhjkhjkhjkhh"
 }
 
 office5_to_post = {
@@ -112,8 +117,16 @@ office6_to_post = {
 
 office_to_post8 = {
     "office_type": 1223345,
-    "name": "Democrat"
+    "name": 123456
 }
+
+office_to_post10 = {
+    "name": "",
+    "office_type": ""
+}
+
+office_names_allowed = ["president", "governor", "senator", "MP", "MCA"]
+
 
 offices_allowed = ["federal", "legislative", "state", "local government"]
 

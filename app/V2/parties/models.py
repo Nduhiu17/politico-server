@@ -26,8 +26,8 @@ class Party:
             "hqaddress": self.hqaddress,
             "logoUrl": self.logoUrl,
             "slogan": self.slogan,
-            "date_created":self.date_created,
-            "date_modified":self.date_modified
+            "date_created": self.date_created,
+            "date_modified": self.date_modified
 
         }
         return party_obj
@@ -41,7 +41,8 @@ class Party:
         party_dicts = []
 
         for item in rows:
-            party = Party(id=item[0], name=item[1], hqaddress=item[2], logoUrl=item[3],slogan=item[4],date_created=item[5],date_modified=item[6])
+            party = Party(id=item[0], name=item[1], hqaddress=item[2], logoUrl=item[3], slogan=item[4],
+                          date_created=item[5], date_modified=item[6])
             party_dicts.append(party.json_dumps())
         return party_dicts
 
@@ -96,3 +97,14 @@ class Party:
             "id": id,
             "name": name,
         }
+
+    @classmethod
+    def delete_a_party(cls, id):
+        """method to delete a party"""
+        try:
+            cursor.execute('DELETE FROM public.parties CASCADE WHERE id = %s', (id,))
+            return True
+        except Exception:
+            return False
+
+
