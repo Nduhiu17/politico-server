@@ -44,7 +44,7 @@ class Candindate:
             "office":self.office,
             "party": self.party,
 
-            "candidate": User.find_by_nationaid(self.candidate),
+            "candidate": User.find_user_by_id(id=self.candidate),
             "date_created": self.date_created,
             "date_modified": self.date_modified
         }
