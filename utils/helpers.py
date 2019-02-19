@@ -17,6 +17,26 @@ party1_to_post = {
     "logoUrl": "www.logo.com/logo"
 }
 
+party_update_data = {
+    "name": "updated party"
+}
+
+party_update_data1 = {
+    "hqaddress": "updated party"
+}
+
+party_update_data2 = {
+    "name": ""
+}
+
+party_update_data3 = {
+    "name": "updated party data"
+}
+
+party_update_data4 = {
+    "name": 123456
+}
+
 party2_to_post = {
     "name": "democrat",
     "hqaddress": "1234",
