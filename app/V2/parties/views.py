@@ -131,3 +131,20 @@ def patch(id):
         "data": party_to_edit,
         "message": "updated successfully"
     }), 201)
+
+
+@base_v2.route('/parties/<int:id>', methods=['DELETE'])
+@admin_required
+def delete_a_party(id):
+    """Endpoint to delete a party"""
+    party = Party.retrieve_by_id(id=id)
+    if not party:
+        return make_response(jsonify({
+            "status": 404,
+            "error": "No party with that id"
+        }), 404)
+    Party.delete_a_party(id=id)
+    return make_response(jsonify({
+        "status": 204,
+        "data": "Successfully deleted"
+    }))
