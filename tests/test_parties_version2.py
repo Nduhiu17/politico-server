@@ -101,7 +101,10 @@ class TestParty(BaseTestCase):
 
             response = self.client.get('/api/v2/parties/1', headers={'Authorization': f'Bearer {result["token"]}',
                                                                      'Content-Type': 'application' '/json'})
+            print(response)
             self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.json['data']['hqaddress'], 'New york')
             response = self.client.get('/api/v2/parties/10', headers={'Authorization': f'Bearer {result["token"]}',
                                                                       'Content-Type': 'application' '/json'})
             self.assertEqual(response.status_code, 404)
+            self.assertEqual(response.json['error'], 'No party with that id')

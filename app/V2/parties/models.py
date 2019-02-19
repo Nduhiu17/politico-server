@@ -21,7 +21,7 @@ class Party:
     def json_dumps(self):
         """method to return a json object from the party details"""
         party_obj = {
-            "id": str(self.id),
+            "id": self.id,
             "name": self.name,
             "hqaddress": self.hqaddress,
             "logoUrl": self.logoUrl,
@@ -67,3 +67,19 @@ class Party:
             return retrieved_party.json_dumps()
         except Exception:
             return False
+
+    @staticmethod
+    def retrieve_by_id(id):
+        """method to get a party by id"""
+        try:
+            cursor.execute("select * from parties where id = %s", (id,))
+            retrieved_party = cursor.fetchone()
+            retrieved_party = Party(id=retrieved_party[0], name=retrieved_party[1], hqaddress=retrieved_party[2],
+                                    logoUrl=retrieved_party[3], slogan=retrieved_party[4],
+                                    date_created=retrieved_party[5],
+                                    date_modified=retrieved_party[6])
+            retrieved_party = retrieved_party.json_dumps()
+            return retrieved_party
+        except Exception:
+            return False
+
