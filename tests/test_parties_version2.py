@@ -162,3 +162,41 @@ class TestParty(BaseTestCase):
                                                   'Content-Type': 'application' '/json'})
             self.assertEqual(response.status_code, 400)
             self.assertEqual(response.json['error'], 'Name should be of type strings')
+
+    def test_delete_a_party(self):
+        """Test delete a party"""
+        with self.client:
+            response = signup_admin(self)
+            result = json.loads(response.data)
+            self.assertIn("token", result)
+            response = self.client.post('/api/v2/parties', data=json.dumps(party_to_post),
+                                        headers={'Authorization': f'Bearer {result["token"]}',
+                                                 'Content-Type': 'application' '/json'})
+            self.assertEqual(response.status_code, 201)
+            response = self.client.delete('/api/v2/parties/1',
+                                          headers={'Authorization': f'Bearer {result["token"]}',
+                                                   'Content-Type': 'application' '/json'})
+            self.assertEqual(response.json['status'], 204)
+            response = self.client.delete('/api/v2/parties/100',
+                                          headers={'Authorization': f'Bearer {result["token"]}',
+                                                   'Content-Type': 'application' '/json'})
+            self.assertEqual(response.status_code, 404)
+
+    def test_delete_a_party_by_non_admin(self):
+        """Test delete a party"""
+        with self.client:
+            response = signup_admin(self)
+            result = json.loads(response.data)
+            self.assertIn("token", result)
+            response = self.client.post('/api/v2/parties', data=json.dumps(party_to_post),
+                                        headers={'Authorization': f'Bearer {result["token"]}',
+                                                 'Content-Type': 'application' '/json'})
+            self.assertEqual(response.status_code, 201)
+            response = signup_user(self)
+            result = json.loads(response.data)
+            self.assertIn("token", result)
+            response = self.client.delete('/api/v2/parties/1',
+                                          headers={'Authorization': f'Bearer {result["token"]}',
+                                                   'Content-Type': 'application' '/json'})
+            self.assertEqual(response.status_code, 403)
+
