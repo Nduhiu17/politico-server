@@ -20,7 +20,6 @@ class Office:
     def json_dumps(self):
         """method to return a json object from the office details"""
         office_obj = {
-            "id":self.id,
             "name": self.name,
             "office_type": self.office_type,
             "date_created": self.date_created,
@@ -36,19 +35,6 @@ class Office:
                    VALUES ('{args[0]}','{args[1]}','{(datetime.now())}','{(datetime.now())}');
                    """
         cursor.execute(format_str)
-
-    @classmethod
-    def get_office_by_type(cls, office_type):
-        """method to get a office by type"""
-        try:
-            cursor.execute("select * from offices where office_type = %s", (office_type,))
-            retrieved_office = cursor.fetchone()
-            retrieved_office = Office(id=retrieved_office[0], name=retrieved_office[1], office_type=retrieved_office[2],
-                                      date_created=retrieved_office[3],
-                                      date_modified=retrieved_office[4])
-            return retrieved_office.json_dumps()
-        except Exception:
-            return False
 
     @classmethod
     def get_office_by_name(cls, name):

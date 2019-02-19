@@ -82,11 +82,6 @@ class TestOffice(BaseTestCase):
                                              'Content-Type': 'application' '/json'})
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.json['data']['office_type'], 'federal')
-        response = self.client.post('/api/v2/offices', data=json.dumps(office_to_post),
-                                    headers={'Authorization': f'Bearer {result["token"]}',
-                                             'Content-Type': 'application' '/json'})
-        self.assertEqual(response.status_code, 409)
-        self.assertEqual(response.json['error'], 'Office type already registered')
         response = self.client.post('/api/v2/offices', data=json.dumps(office_to_post23),
                                     headers={'Authorization': f'Bearer {result["token"]}',
                                              'Content-Type': 'application' '/json'})

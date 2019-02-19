@@ -42,12 +42,7 @@ def post():
             "status": 400,
             "error": "That office name is not yet allowed"
         }), 400)
-    if Office.get_office_by_type(data["office_type"]):
-        return make_response(jsonify({
-            "status": 409,
-            "error": "Office type already registered"
-        }), 409)
-    if Office.get_office_by_type(data["name"]):
+    if Office.get_office_by_name(data["name"]):
         return make_response(jsonify({
             "status": 409,
             "error": "Office name already registered"
