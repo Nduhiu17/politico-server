@@ -12,7 +12,6 @@ office_v2 = Blueprint('office-v2', __name__, url_prefix='/api/v2')
 
 
 @office_v2.route('/offices', methods=['POST'])
-@jwt_required
 @admin_required
 def post():
     """End point to post a political party"""
