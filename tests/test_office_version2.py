@@ -88,7 +88,7 @@ class TestOffice(BaseTestCase):
         self.assertEqual(response.status_code, 409)
         self.assertEqual(response.json['error'], 'Office name already registered')
 
-    def test_get_parties(self):
+    def test_get_offices(self):
         """Test can get all offices"""
         with self.client:
             response = signup_user(self)
@@ -115,6 +115,7 @@ class TestOffice(BaseTestCase):
             response = self.client.get('/api/v2/offices/10', headers={'Authorization': f'Bearer {result["token"]}',
                                                                       'Content-Type': 'application' '/json'})
             self.assertEqual(response.status_code, 404)
+            self.assertEqual(response.json['error'], 'No office with that id')
 
 
 
