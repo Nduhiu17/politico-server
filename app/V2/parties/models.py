@@ -83,3 +83,16 @@ class Party:
         except Exception:
             return False
 
+    @classmethod
+    def update(cls, name, id):
+        """Method to update a party"""
+        format_str = f"""
+          UPDATE public.parties SET name = '{name}', date_modified = '{str(datetime.now())}' WHERE id = {id};
+          """
+
+        cursor.execute(format_str)
+
+        return {
+            "id": id,
+            "name": name,
+        }

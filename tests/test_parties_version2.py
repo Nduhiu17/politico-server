@@ -123,6 +123,7 @@ class TestParty(BaseTestCase):
                                          headers={'Authorization': f'Bearer {result["token"]}',
                                                   'Content-Type': 'application' '/json'})
             self.assertEqual(response.status_code, 201)
+            self.assertEqual(response.json['message'], 'updated successfully')
 
     def test_update_a_party_with_no_data(self):
         """Test can get parties"""
@@ -138,19 +139,26 @@ class TestParty(BaseTestCase):
                                          headers={'Authorization': f'Bearer {result["token"]}',
                                                   'Content-Type': 'application' '/json'})
             self.assertEqual(response.status_code, 400)
+            self.assertEqual(response.json['error'], 'Party name is required')
+
             response = self.client.patch('/api/v2/parties/1/name', data=json.dumps(party_update_data2),
                                          headers={'Authorization': f'Bearer {result["token"]}',
                                                   'Content-Type': 'application' '/json'})
             self.assertEqual(response.status_code, 400)
+            self.assertEqual(response.json['error'], 'Empty strings are not allowed')
+
             response = self.client.patch('/api/v2/parties/1/name', data=json.dumps(party_to_post),
                                          headers={'Authorization': f'Bearer {result["token"]}',
                                                   'Content-Type': 'application' '/json'})
             self.assertEqual(response.status_code, 409)
+            self.assertEqual(response.json['error'], 'Party name already taken')
             response = self.client.patch('/api/v2/parties/10/name', data=json.dumps(party_update_data3),
                                          headers={'Authorization': f'Bearer {result["token"]}',
                                                   'Content-Type': 'application' '/json'})
             self.assertEqual(response.status_code, 404)
+            self.assertEqual(response.json['error'], 'No party found with that id')
             response = self.client.patch('/api/v2/parties/1/name', data=json.dumps(party_update_data4),
                                          headers={'Authorization': f'Bearer {result["token"]}',
                                                   'Content-Type': 'application' '/json'})
             self.assertEqual(response.status_code, 400)
+            self.assertEqual(response.json['error'], 'Name should be of type strings')
