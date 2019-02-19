@@ -11,7 +11,6 @@ from utils.input_validators import Validate
 base_v2 = Blueprint('base-v2', __name__, url_prefix='/api/v2')
 
 
-
 @base_v2.route('/parties', methods=['GET'])
 @jwt_required
 def get():
@@ -37,7 +36,7 @@ def post():
 
     if isinstance(data['name'], int) or isinstance(data['hqaddress'], int) or isinstance(data['logoUrl'],
                                                                                          int) or isinstance(
-            data['slogan'], int):
+        data['slogan'], int):
         return make_response(jsonify({
             "status": 400,
             "error": "Post data of type strings"
@@ -88,3 +87,47 @@ def get_a_party(id):
         "status": 200,
         "data": party
     }), 200)
+
+
+@base_v2.route('/parties/<int:id>/name', methods=['PATCH'])
+@admin_required
+def patch(id):
+    """End point to modify a party"""
+    data = request.get_json(force=True)
+    if 'name' not in data:
+        return make_response(jsonify({
+            "status": 400,
+            "error": "Party name is required"
+        }), 400)
+
+    data = request.get_json(force=True)
+    if isinstance(data['name'], int):
+        return make_response(jsonify({
+            "status": 400,
+            "error": "Name should be of type strings"
+        }), 400)
+
+    if Party.get_party_by_name(data["name"]):
+        return make_response(jsonify({
+            "status": 409,
+            "error": "Party name already taken"
+        }), 409)
+    if Validate.validate_empty_string(data_inputed=data["name"]):
+        return make_response(jsonify({
+            "status": 400,
+            "error": "Empty strings are not allowed"
+        }), 400)
+    party_to_edit = Party.retrieve_by_id(id=id)
+    if not party_to_edit:
+        return make_response(jsonify({
+            "status": 404,
+            "error": "No party found with that id"
+        }), 404)
+
+    party_to_edit = Party.update(name=data["name"], id=id)
+
+    return make_response(jsonify({
+        "status": 201,
+        "data": party_to_edit,
+        "message": "updated successfully"
+    }), 201)
