@@ -4,6 +4,8 @@ from functools import wraps
 from flask import make_response, jsonify
 from flask_jwt_extended import verify_jwt_in_request, get_jwt_identity
 
+from app.V2.parties.models import Party
+
 party_to_post = {
     "name": "Democrat",
     "hqaddress": "New york",
@@ -414,3 +416,10 @@ candidate_to_register4 = {
     "party": "",
     "candidate": ""
 }
+
+
+def party_exists(party_id):
+    party = Party.retrieve_by_id(id=id)
+    if party:
+        return True
+    return False

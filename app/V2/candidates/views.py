@@ -4,7 +4,7 @@ from flask import Blueprint, request, make_response, jsonify
 
 from app.V2.candidates.models import Candindate
 from app.V2.offices.models import Office
-from utils.helpers import admin_required
+from utils.helpers import admin_required, party_exists
 from utils.input_validators import Validate
 
 candindate_v2 = Blueprint('candindate-v2', __name__, url_prefix='/api/v2')
@@ -31,6 +31,11 @@ def post(id):
         return make_response(jsonify({
             "status": 404,
             "error": "Office not found"
+        }), 404)
+    if party_exists(party_id=data["party"]):
+        return make_response(jsonify({
+            "status": 404,
+            "error": "Party not found"
         }), 404)
     if Candindate.find_candidate_using_id(id=data["candidate"]):
         return make_response(jsonify({
