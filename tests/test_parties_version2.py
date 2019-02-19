@@ -2,7 +2,7 @@
 import json
 
 from tests.base_test_case import BaseTestCase
-from utils.helpers import signup_user
+from utils.helpers import signup_user, party_to_post, party7_to_post, party8_to_post, signup_admin, party_to_post_empty
 
 
 class TestParty(BaseTestCase):
@@ -24,3 +24,66 @@ class TestParty(BaseTestCase):
             response = self.client.get('api/v2/parties', headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 401)
 
+    def test_post_party(self):
+        """test party can be posted by admin"""
+        response = signup_admin(self)
+        result = json.loads(response.data)
+        self.assertIn("token", result)
+        response = self.client.post('/api/v2/parties', data=json.dumps(party_to_post),
+                                    headers={'Authorization': f'Bearer {result["token"]}',
+                                             'Content-Type': 'application' '/json'})
+        self.assertEqual(response.status_code, 201)
+
+    def test_post_party_by_non_admin(self):
+        """test party can be posted"""
+        response = signup_user(self)
+        result = json.loads(response.data)
+        self.assertIn("token", result)
+        response = self.client.post('/api/v2/parties', data=json.dumps(party_to_post),
+                                    headers={'Authorization': f'Bearer {result["token"]}',
+                                             'Content-Type': 'application' '/json'})
+        self.assertEqual(response.status_code, 403)
+
+    def test_post_party_twice(self):
+        """test party can be posted by admin"""
+        response = signup_admin(self)
+        result = json.loads(response.data)
+        self.assertIn("token", result)
+        response = self.client.post('/api/v2/parties', data=json.dumps(party_to_post),
+                                    headers={'Authorization': f'Bearer {result["token"]}',
+                                             'Content-Type': 'application' '/json'})
+        self.assertEqual(response.status_code, 201)
+        response = self.client.post('/api/v2/parties', data=json.dumps(party_to_post),
+                                    headers={'Authorization': f'Bearer {result["token"]}',
+                                             'Content-Type': 'application' '/json'})
+        self.assertEqual(response.status_code, 409)
+
+    def test_post_non_strings(self):
+        """test party can be posted by admin"""
+        response = signup_admin(self)
+        result = json.loads(response.data)
+        self.assertIn("token", result)
+        response = self.client.post('/api/v2/parties', data=json.dumps(party7_to_post),
+                                    headers={'Authorization': f'Bearer {result["token"]}',
+                                             'Content-Type': 'application' '/json'})
+        self.assertEqual(response.status_code, 400)
+
+    def test_post_empty_strings(self):
+        """test party can be posted by admin"""
+        response = signup_admin(self)
+        result = json.loads(response.data)
+        self.assertIn("token", result)
+        response = self.client.post('/api/v2/parties', data=json.dumps(party_to_post_empty),
+                                    headers={'Authorization': f'Bearer {result["token"]}',
+                                             'Content-Type': 'application' '/json'})
+        self.assertEqual(response.status_code, 400)
+
+    def test_post_not_enough_fields(self):
+        """test party can be posted by admin"""
+        response = signup_admin(self)
+        result = json.loads(response.data)
+        self.assertIn("token", result)
+        response = self.client.post('/api/v2/parties', data=json.dumps(party8_to_post),
+                                    headers={'Authorization': f'Bearer {result["token"]}',
+                                             'Content-Type': 'application' '/json'})
+        self.assertEqual(response.status_code, 400)

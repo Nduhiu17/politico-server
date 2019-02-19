@@ -28,6 +28,8 @@ class Database:
         phonenumber VARCHAR(255) NOT NULL,
         passporturl TEXT NOT NULL,
         roles VARCHAR(255) NOT NULL,
+        nationalid VARCHAR(255) NOT NULL,
+        county VARCHAR(255) NOT NULL,
         password VARCHAR(255) NOT NULL,
         date_created VARCHAR(80),
         date_modified VARCHAR(80),
@@ -45,6 +47,7 @@ class Database:
         name VARCHAR(255) NOT NULL,
         hqAddress VARCHAR(255) NOT NULL,
         logoUrl TEXT NOT NULL,
+        slogan VARCHAR(255) NOT NULL,
         date_created VARCHAR(80),
         date_modified VARCHAR(80),
         PRIMARY KEY (id)

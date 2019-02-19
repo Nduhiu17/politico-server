@@ -1,0 +1,2 @@
+postgres://slcvwcmekdtfjz:7c1eecc13f1ec95a903e190fa359c2dbf36cbe428a772ac3e409f5c1765cfffd@ec2-107-20-167-11.compute-1.amazonaws.com:5432/d2khsodoghrmec
+postgres://slcvwcmekdtfjz:7c1eecc13f1ec95a903e190fa359c2dbf36cbe428a772ac3e409f5c1765cfffd@ec2-107-20-167-11.compute-1.amazonaws.com:5432/d2khsodoghrmec

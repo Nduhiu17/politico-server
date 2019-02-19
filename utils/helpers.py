@@ -1,9 +1,14 @@
 import json
+from functools import wraps
+
+from flask import make_response, jsonify
+from flask_jwt_extended import verify_jwt_in_request, get_jwt_identity
 
 party_to_post = {
     "name": "Democrat",
     "hqaddress": "New york",
-    "logoUrl": "www.logo.com/logo"
+    "logoUrl": "www.logo.com/logo",
+    "slogan": "The future is here"
 }
 
 party1_to_post = {
@@ -42,7 +47,8 @@ party6_to_post = {
 party7_to_post = {
     "name": 12345678,
     "hqaddress": 12345678,
-    "logoUrl": 12344567
+    "logoUrl": 12344567,
+    "slogan":1234564
 }
 
 party8_to_post = {
@@ -98,9 +104,40 @@ user = {
     "email": "nduhiu@gmail1.com",
     "phonenumber": "07221172641",
     "passporturl": "www.passport.com/ph1oto",
+    "nationalid": "abc12345",
+    "county": "nairobi",
     "roles": "voter",
     "password": "Password2015"
 }
+
+
+user31 = {
+    "firstname": "Antony1",
+    "lastname": "Nduhiu1",
+    "othername": "Mundia1",
+    "email": "nduhjjiu@gmail1.com",
+    "phonenumber": "07221172641",
+    "passporturl": "www.passport.com/ph1oto",
+    "nationalid": "abc12345",
+    "county": "nairobi",
+    "roles": "voter",
+    "password": "Password2015"
+}
+
+user32 = {
+    "firstname": 123456,
+    "lastname": 123456,
+    "othername": 123456,
+    "email": "nduhjjiu@gmail1.com",
+    "phonenumber": "07221172641",
+    "passporturl": "www.passport.com/ph1oto",
+    "nationalid": "abc12345",
+    "county": "nairobi",
+    "roles": "voter",
+    "password": "Password2015"
+}
+
+
 
 user1 = {
     "firstname": "",
@@ -109,6 +146,8 @@ user1 = {
     "email": "nduhiu@gmail10.com",
     "phonenumber": "07221172641",
     "passporturl": "www.passport.com/ph1oto",
+    "nationalid": "abc12345",
+    "county": "nairobi",
     "roles": "voter",
     "password": "Password2015"
 
@@ -121,6 +160,8 @@ user2 = {
     "email": "nduhiu@gmail100.com",
     "phonenumber": "07221172641",
     "passporturl": "www.passport.com/ph1oto",
+    "nationalid": "abc12345",
+    "county": "nairobi",
     "roles": "voter",
     "password": "Password2015"
 
@@ -132,6 +173,8 @@ user3 = {
     "email": "nduhiu@gmail1000.com",
     "phonenumber": "07221172641",
     "passporturl": "www.passport.com/ph1oto",
+    "nationalid": "abc12345",
+    "county": "nairobi",
     "roles": "voter",
     "password": "Password2015"
 
@@ -144,6 +187,8 @@ user4 = {
     "email": "nduhiu@gmail10000.com",
     "phonenumber": "07221172641",
     "passporturl": "www.passport.com/ph1oto",
+    "nationalid": "abc12345",
+    "county": "nairobi",
     "roles": "voter",
     "password": "Password2015"
 
@@ -156,6 +201,8 @@ user5 = {
     "email": "",
     "phonenumber": "07221172641",
     "passporturl": "www.passport.com/ph1oto",
+    "nationalid": "abc12345",
+    "county": "nairobi",
     "roles": "voter",
     "password": "Password2015"
 
@@ -248,8 +295,6 @@ user16 = {
 }
 
 
-
-
 def signup_user(self):
     """function that registers a user"""
     return self.client.post(
@@ -257,3 +302,49 @@ def signup_user(self):
         data=json.dumps(user),
         content_type='application/json'
     )
+
+
+party_to_post_empty = {
+    "name": "",
+    "hqaddress": "",
+    "logoUrl": "",
+    "slogan": ""
+}
+
+admin = {
+    "firstname": "Admin",
+    "lastname": "Admin",
+    "othername": "Admin",
+    "email": "admin@gmail.com",
+    "phonenumber": "07221172641",
+    "passporturl": "www.passport.com/ph1oto",
+    "nationalid": "123abc",
+    "county": "nairobi",
+    "roles": "admin",
+    "password": "Password2015"
+}
+
+
+def signup_admin(self):
+    """function that registers an admin"""
+    return self.client.post(
+        'api/v2/auth/signup',
+        data=json.dumps(admin),
+        content_type='application/json'
+    )
+
+
+def admin_required(fn):
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+        verify_jwt_in_request()
+        claims = get_jwt_identity()
+        if claims != 'admin@gmail.com':
+            return make_response(jsonify({
+                "status": 403,
+                "error": "Admin only"
+            }), 403)
+        else:
+            return fn(*args, **kwargs)
+
+    return wrapper

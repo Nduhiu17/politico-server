@@ -13,7 +13,7 @@ auth_route = Blueprint('auth-v2', __name__, url_prefix='/api/v2/auth')
 def post():
     """End point to post a political party"""
     data = request.get_json(force=True)
-    if len(data) < 7:
+    if len(data) < 9:
         return make_response(jsonify({
             "status": 400,
             "error": "firstname,lastname,othername,email,phonenumber,passporturl and password are required"
@@ -40,6 +40,11 @@ def post():
             "status": 409,
             "error": "Email already taken"
         }), 409)
+    if User.find_by_nationaid(id=data['nationalid']):
+        return make_response(jsonify({
+            "status": 409,
+            "error": "A voter with that national id already exists"
+        }), 409)
 
     firstname = data["firstname"]
     lastname = data["lastname"]
@@ -48,6 +53,8 @@ def post():
     phonenumber = data["phonenumber"]
     passporturl = data["passporturl"]
     roles = data["roles"]
+    nationalid = data["nationalid"]
+    county = data["county"]
     password = data["password"]
     if Validate.validate_empty_string(firstname) or Validate.validate_empty_string(lastname) or Validate.validate_empty_string(othername) or Validate.validate_empty_string(email) or Validate.validate_empty_string(phonenumber) or Validate.validate_empty_string(passporturl) or Validate.validate_empty_string(password) or Validate.validate_empty_string(roles):
         return make_response(jsonify({
@@ -57,9 +64,9 @@ def post():
 
     new_user = User(id=None, firstname=firstname, lastname=lastname, othername=othername, email=email,
                     phonenumber=phonenumber,
-                    passporturl=passporturl, roles=roles,password=User.generate_hash(password=password), date_created=datetime.now(),
+                    passporturl=passporturl, roles=roles,nationalid=nationalid,county=county,password=User.generate_hash(password=password), date_created=datetime.now(),
                     date_modified=datetime.now())
-    new_user.save(firstname, lastname, othername, email, phonenumber, passporturl, roles,User.generate_hash(password=password), datetime.now(),
+    new_user.save(firstname, lastname, othername, email, phonenumber, passporturl, roles,nationalid,county,User.generate_hash(password=password), datetime.now(),
                   datetime.now())
 
     access_token = User.generate_token(email=data["email"])
@@ -109,9 +116,9 @@ def login():
             "error": "User not yet registered"
         }), 404)
 
-    if User.verify_hashed_password(data['password'], current_user[8]):
+    if User.verify_hashed_password(data['password'], current_user[10]):
         access_token = User.generate_token(email=data["email"])
-    logged_user = User(id=current_user[0],firstname=current_user[1],lastname=current_user[2],othername=current_user[3],email=current_user[4],phonenumber=current_user[5],passporturl=current_user[6],roles=current_user[7],password=current_user[8],date_created=current_user[9],date_modified=current_user[10])
+    logged_user = User(id=current_user[0],firstname=current_user[1],lastname=current_user[2],othername=current_user[3],email=current_user[4],phonenumber=current_user[5],passporturl=current_user[6],roles=current_user[7],nationalid=current_user[8],county=current_user[9],password=current_user[10],date_created=current_user[11],date_modified=current_user[12])
     return make_response(jsonify({
         "status": 200,
         "data": logged_user.json_dump(),
