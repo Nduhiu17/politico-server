@@ -11,6 +11,7 @@ from utils.input_validators import Validate
 base_v2 = Blueprint('base-v2', __name__, url_prefix='/api/v2')
 
 
+
 @base_v2.route('/parties', methods=['GET'])
 @jwt_required
 def get():
@@ -34,7 +35,9 @@ def post():
             "error": "name,hqaddress,logoUrl and slogan are required"
         }), 400)
 
-    if isinstance(data['name'], int) or isinstance(data['hqaddress'], int) or isinstance(data['logoUrl'],int) or isinstance(data['slogan'], int):
+    if isinstance(data['name'], int) or isinstance(data['hqaddress'], int) or isinstance(data['logoUrl'],
+                                                                                         int) or isinstance(
+            data['slogan'], int):
         return make_response(jsonify({
             "status": 400,
             "error": "Post data of type strings"
@@ -68,3 +71,20 @@ def post():
         "status": 201,
         "data": party_saved
     }), 201)
+
+
+@base_v2.route('/parties/<int:id>', methods=['GET'])
+@jwt_required
+def get_a_party(id):
+    """End point to get party by id"""
+    party = Party.retrieve_by_id(id=id)
+    if not party:
+        return make_response(jsonify({
+            "status": 404,
+            "error": "No party with that id"
+        }), 404)
+
+    return make_response(jsonify({
+        "status": 200,
+        "data": party
+    }), 200)

@@ -87,3 +87,24 @@ class TestParty(BaseTestCase):
                                     headers={'Authorization': f'Bearer {result["token"]}',
                                              'Content-Type': 'application' '/json'})
         self.assertEqual(response.status_code, 400)
+
+    def test_get_a_party(self):
+        """Test can get party"""
+        with self.client:
+            response = signup_admin(self)
+            result = json.loads(response.data)
+            self.assertIn("token", result)
+            response = self.client.post('/api/v2/parties', data=json.dumps(party_to_post),
+                                        headers={'Authorization': f'Bearer {result["token"]}',
+                                                 'Content-Type': 'application' '/json'})
+            self.assertEqual(response.status_code, 201)
+
+            response = self.client.get('/api/v2/parties/1', headers={'Authorization': f'Bearer {result["token"]}',
+                                                                     'Content-Type': 'application' '/json'})
+            print(response)
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.json['data']['hqaddress'], 'New york')
+            response = self.client.get('/api/v2/parties/10', headers={'Authorization': f'Bearer {result["token"]}',
+                                                                      'Content-Type': 'application' '/json'})
+            self.assertEqual(response.status_code, 404)
+            self.assertEqual(response.json['error'], 'No party with that id')
