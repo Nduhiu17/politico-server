@@ -98,6 +98,25 @@ class TestOffice(BaseTestCase):
                                                                    'Content-Type': 'application' '/json'})
             self.assertEqual(response.status_code, 200)
 
+    def test_getting_an_office(self):
+        """Test can get an office"""
+        with self.client:
+            response = signup_admin(self)
+            result = json.loads(response.data)
+            self.assertIn("token", result)
+            response = self.client.post('/api/v2/offices', data=json.dumps(office_to_post),
+                                        headers={'Authorization': f'Bearer {result["token"]}',
+                                                 'Content-Type': 'application' '/json'})
+            self.assertEqual(response.status_code, 201)
+
+            response = self.client.get('/api/v2/offices/1', headers={'Authorization': f'Bearer {result["token"]}',
+                                                                     'Content-Type': 'application' '/json'})
+            self.assertEqual(response.status_code, 200)
+            response = self.client.get('/api/v2/offices/10', headers={'Authorization': f'Bearer {result["token"]}',
+                                                                      'Content-Type': 'application' '/json'})
+            self.assertEqual(response.status_code, 404)
+
+
 
 
 

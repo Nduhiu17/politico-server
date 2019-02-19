@@ -20,6 +20,7 @@ class Office:
     def json_dumps(self):
         """method to return a json object from the office details"""
         office_obj = {
+            "id": self.id,
             "name": self.name,
             "office_type": self.office_type,
             "date_created": self.date_created,
@@ -63,4 +64,5 @@ class Office:
                             date_modified=retrieved_office[4])
             office_dicts.append(office.json_dumps())
         return office_dicts
+
 
