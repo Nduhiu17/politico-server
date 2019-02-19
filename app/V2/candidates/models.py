@@ -49,3 +49,8 @@ class Candindate:
             "date_modified": self.date_modified
         }
         return candidate_obj
+
+    @staticmethod
+    def make_politician(candidate_id):
+        cursor.execute(
+            f"UPDATE public.users SET roles = 'politician' WHERE id = {candidate_id};")
