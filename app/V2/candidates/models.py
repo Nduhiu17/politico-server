@@ -1,6 +1,7 @@
 from attr import dataclass
 from datetime import datetime
 
+from app.V2.auth.models import User
 from app.V2.database.db import Database
 
 cursor = Database.connect_to_db()
@@ -36,3 +37,15 @@ class Candindate:
                 return True
         except Exception:
             return False
+
+    def json_dumps(self):
+        """method to return a json object from the candidate details"""
+        candidate_obj = {
+            "office":self.office,
+            "party": self.party,
+
+            "candidate": User.find_by_id(self.candidate),
+            "date_created": self.date_created,
+            "date_modified": self.date_modified
+        }
+        return candidate_obj
