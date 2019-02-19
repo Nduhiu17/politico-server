@@ -20,6 +20,7 @@ class Office:
     def json_dumps(self):
         """method to return a json object from the office details"""
         office_obj = {
+            "id": self.id,
             "name": self.name,
             "office_type": self.office_type,
             "date_created": self.date_created,
@@ -48,4 +49,33 @@ class Office:
             return retrieved_office.json_dumps()
         except Exception:
             return False
+
+    @staticmethod
+    def get_all_offices():
+        """method to get all offices from the database"""
+        cursor.execute(
+            f"SELECT * FROM public.offices")
+        rows = cursor.fetchall()
+        office_dicts = []
+
+        for retrieved_office in rows:
+            office = Office(id=retrieved_office[0], name=retrieved_office[1], office_type=retrieved_office[2],
+                            date_created=retrieved_office[3],
+                            date_modified=retrieved_office[4])
+            office_dicts.append(office.json_dumps())
+        return office_dicts
+
+    @staticmethod
+    def get_office_by_id(id):
+        """method to get a office by id"""
+        try:
+            cursor.execute("select * from offices where id = %s", (id,))
+            retrieved_office = cursor.fetchone()
+            retrieved_office = Office(id=retrieved_office[0], name=retrieved_office[1], office_type=retrieved_office[2],
+                                      date_created=retrieved_office[3],
+                                      date_modified=retrieved_office[4])
+            return retrieved_office.json_dumps()
+        except Exception:
+            return False
+
 

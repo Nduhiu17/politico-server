@@ -65,3 +65,31 @@ def post():
         "status": 201,
         "data": new_office.json_dumps()
     }), 201)
+
+
+@office_v2.route('/offices', methods=['GET'])
+@jwt_required
+def get():
+    """End point to get all offices"""
+    all_offices = Office.get_all_offices()
+    return make_response(jsonify({
+        "status": 200,
+        "data": all_offices
+    }), 200)
+
+
+@office_v2.route('/offices/<int:id>', methods=['GET'])
+@jwt_required
+def get_an_office(id):
+    """End point to get a party by id"""
+    office = Office.get_office_by_id(id=id)
+    if not office:
+        return make_response(jsonify({
+            "status": 404,
+            "error": "No office with that id"
+        }), 404)
+
+    return make_response(jsonify({
+        "status": 200,
+        "data": office
+    }), 200)
