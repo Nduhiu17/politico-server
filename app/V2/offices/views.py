@@ -65,3 +65,14 @@ def post():
         "status": 201,
         "data": new_office.json_dumps()
     }), 201)
+
+
+@office_v2.route('/offices', methods=['GET'])
+@jwt_required
+def get():
+    """End point to get all offices"""
+    all_offices = Office.get_all_offices()
+    return make_response(jsonify({
+        "status": 200,
+        "data": all_offices
+    }), 200)

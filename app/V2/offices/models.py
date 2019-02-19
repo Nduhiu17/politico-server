@@ -49,3 +49,18 @@ class Office:
         except Exception:
             return False
 
+    @staticmethod
+    def get_all_offices():
+        """method to get all offices from the database"""
+        cursor.execute(
+            f"SELECT * FROM public.offices")
+        rows = cursor.fetchall()
+        office_dicts = []
+
+        for retrieved_office in rows:
+            office = Office(id=retrieved_office[0], name=retrieved_office[1], office_type=retrieved_office[2],
+                            date_created=retrieved_office[3],
+                            date_modified=retrieved_office[4])
+            office_dicts.append(office.json_dumps())
+        return office_dicts
+
