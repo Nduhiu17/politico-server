@@ -115,6 +115,12 @@ office_to_post8 = {
     "name": "Democrat"
 }
 
+office_to_post10 = {
+    "name": "",
+    "office_type": ""
+}
+
+
 offices_allowed = ["federal", "legislative", "state", "local government"]
 
 user = {
