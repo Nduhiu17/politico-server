@@ -45,6 +45,7 @@ class Party:
             party = Party(id=item[0], name=item[1], hqaddress=item[2], logoUrl=item[3], slogan=item[4],
                           date_created=item[5], date_modified=item[6])
             party = party.json_dumps()
+            party['candindates'] = Party.get_party_candindates(party_id=item[0])
             party_dicts.append(party)
         return party_dicts
 
@@ -82,6 +83,7 @@ class Party:
                                     date_created=retrieved_party[5],
                                     date_modified=retrieved_party[6])
             retrieved_party = retrieved_party.json_dumps()
+            retrieved_party['candindates'] = Party.get_party_candindates(party_id=id)
             return retrieved_party
         except Exception:
             return False
@@ -115,7 +117,6 @@ class Party:
         cursor.execute(
             f"SELECT * FROM public.candidates where party = {party_id};")
         rows = cursor.fetchall()
-
         candindate_objects = []
         for item in rows:
             candindate = User.find_user_by_id(id=item[3])

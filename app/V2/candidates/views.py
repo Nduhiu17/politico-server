@@ -2,6 +2,7 @@ from datetime import datetime
 
 from flask import Blueprint, request, make_response, jsonify
 
+from app.V2.auth.models import User
 from app.V2.candidates.models import Candindate
 from app.V2.offices.models import Office
 from utils.helpers import admin_required, party_exists
@@ -53,10 +54,16 @@ def post(id):
             "status": 404,
             "error": "No registered party with that id"
         }), 404)
+    if not User.find_user_by_id(id=candidate):
+        return make_response(jsonify({
+            "status": 404,
+            "error": "No voter with that id"
+        }), 404)
 
     new_candidate = Candindate(id=None, office=id, party=party, candidate=candidate, date_created=datetime.now(),
                                date_modified=datetime.now())
     Candindate.make_politician(candidate_id=candidate)
+
     new_candidate.save(office, party, candidate, datetime.now(), datetime.now())
 
     return make_response(jsonify({
