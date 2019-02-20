@@ -6,6 +6,9 @@ from app.V2.database.db import Database
 from app.V2.parties.models import Party
 
 cursor = Database.connect_to_db()
+Database.create_users_tables()
+Database.create_offices_table()
+Database.create_parties_table()
 Database.create_candidates_table()
 
 
