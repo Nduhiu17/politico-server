@@ -4,6 +4,8 @@ from functools import wraps
 from flask import make_response, jsonify
 from flask_jwt_extended import verify_jwt_in_request, get_jwt_identity
 
+from app.V2.parties.models import Party
+
 party_to_post = {
     "name": "Democrat",
     "hqaddress": "New york",
@@ -68,7 +70,7 @@ party7_to_post = {
     "name": 12345678,
     "hqaddress": 12345678,
     "logoUrl": 12344567,
-    "slogan":1234564
+    "slogan": 1234564
 }
 
 party8_to_post = {
@@ -85,7 +87,6 @@ office_to_post23 = {
     "office_type": "legislative",
     "name": "governor"
 }
-
 
 office1_to_post = {
     "office_type": "federal"
@@ -127,7 +128,6 @@ office_to_post10 = {
 
 office_names_allowed = ["president", "governor", "senator", "MP", "MCA"]
 
-
 offices_allowed = ["federal", "legislative", "state", "local government"]
 
 user = {
@@ -142,7 +142,6 @@ user = {
     "roles": "voter",
     "password": "Password2015"
 }
-
 
 user31 = {
     "firstname": "Antony1",
@@ -169,8 +168,6 @@ user32 = {
     "roles": "voter",
     "password": "Password2015"
 }
-
-
 
 user1 = {
     "firstname": "",
@@ -381,3 +378,54 @@ def admin_required(fn):
             return fn(*args, **kwargs)
 
     return wrapper
+
+
+candidate_to_register = {
+    "party": "1",
+    "candidate": "2"
+}
+
+candidate_to_register_non = {
+    "party": "100000",
+    "candidate": "2"
+}
+
+user_u = {
+    "firstname": "Antony1",
+    "lastname": "Nduhiu1",
+    "othername": "Mundia1",
+    "email": "nduhiu100@gmail1.com",
+    "phonenumber": "07221172641",
+    "passporturl": "www.passport.com/ph1oto",
+    "roles": "voter",
+    "nationalid": "abc1234555",
+    "county": "nairobi",
+    "password": "Password2015"
+}
+
+candidate_to_register1 = {
+    "party": "1"
+}
+
+candidate_to_register2 = {
+    "party": 1,
+    "candidate": 2
+}
+
+candidate_to_register3 = {
+    "party": "1",
+    "candidate": "2"
+}
+
+candidate_to_register4 = {
+    "party": "",
+    "candidate": ""
+}
+
+
+def party_exists(party_id):
+    party = Party.retrieve_by_id(id=party_id)
+    if party:
+        return party
+    return None
+

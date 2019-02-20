@@ -93,4 +93,17 @@ class User:
         except Exception:
             return False
 
+    @staticmethod
+    def find_user_by_id(id):
+        """This method gets a user using id"""
+        try:
+            cursor.execute("select * from users where id = %s", (id,))
+            user = cursor.fetchone()
+            user = User(id=user[0], firstname=user[1], lastname=user[2], othername=user[3], email=user[4],
+                        phonenumber=user[5], passporturl=user[6], roles=user[7], nationalid=user[8], county=user[9],
+                        password=user[10], date_created=user[11], date_modified=user[12])
+            return user.json_dump()
+        except Exception:
+            return False
+
 

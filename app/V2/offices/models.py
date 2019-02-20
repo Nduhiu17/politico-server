@@ -2,6 +2,7 @@
 from attr import dataclass
 from datetime import datetime
 
+from app.V2.candidates.models import Candindate
 from app.V2.database.db import Database
 
 cursor = Database.connect_to_db()
@@ -24,7 +25,7 @@ class Office:
             "name": self.name,
             "office_type": self.office_type,
             "date_created": self.date_created,
-            "date_modified": self.date_modified
+            "date_modified": self.date_modified,
         }
         return office_obj
 
@@ -62,7 +63,9 @@ class Office:
             office = Office(id=retrieved_office[0], name=retrieved_office[1], office_type=retrieved_office[2],
                             date_created=retrieved_office[3],
                             date_modified=retrieved_office[4])
-            office_dicts.append(office.json_dumps())
+            office = office.json_dumps()
+            office['candindates'] = Candindate.get_office_candindates(office_id=retrieved_office[0])
+            office_dicts.append(office)
         return office_dicts
 
     @staticmethod
@@ -74,7 +77,9 @@ class Office:
             retrieved_office = Office(id=retrieved_office[0], name=retrieved_office[1], office_type=retrieved_office[2],
                                       date_created=retrieved_office[3],
                                       date_modified=retrieved_office[4])
-            return retrieved_office.json_dumps()
+            retrieved_office= retrieved_office.json_dumps()
+            retrieved_office['candindates'] = Candindate.get_office_candindates(office_id=id)
+            return retrieved_office
         except Exception:
             return False
 
