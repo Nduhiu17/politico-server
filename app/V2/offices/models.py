@@ -2,6 +2,7 @@
 from attr import dataclass
 from datetime import datetime
 
+from app.V2.candidates.models import Candindate
 from app.V2.database.db import Database
 
 cursor = Database.connect_to_db()
@@ -24,7 +25,7 @@ class Office:
             "name": self.name,
             "office_type": self.office_type,
             "date_created": self.date_created,
-            "date_modified": self.date_modified
+            "date_modified": self.date_modified,
         }
         return office_obj
 

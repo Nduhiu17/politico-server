@@ -3,6 +3,7 @@ from datetime import datetime
 
 from app.V2.auth.models import User
 from app.V2.database.db import Database
+from app.V2.parties.models import Party
 
 cursor = Database.connect_to_db()
 Database.create_candidates_table()
@@ -43,7 +44,6 @@ class Candindate:
         candidate_obj = {
             "office":self.office,
             "party": self.party,
-
             "candidate": User.find_user_by_id(id=self.candidate),
             "date_created": self.date_created,
             "date_modified": self.date_modified
@@ -54,3 +54,20 @@ class Candindate:
     def make_politician(candidate_id):
         cursor.execute(
             f"UPDATE public.users SET roles = 'politician' WHERE id = {candidate_id};")
+
+    @staticmethod
+    def get_office_candindates(office_id):
+        """method to get all candindates for a given office"""
+        try:
+            cursor.execute(
+                f"SELECT * FROM public.candidates where office = {office_id};")
+            rows = cursor.fetchall()
+
+            candindate_objects = []
+            for item in rows:
+                candindate = User.find_user_by_id(id=item[3])
+                candindate['party']=Party.retrieve_by_id(id=int(item[1]))
+                candindate_objects.append(candindate)
+            return candindate_objects
+        except Exception:
+            return []
