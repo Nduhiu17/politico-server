@@ -5,10 +5,10 @@ from utils.helpers import signup_admin, office_to_post, party_to_post, user, can
 
 
 class TestVote(BaseTestCase):
-    """Test case class for candidate operations"""
+    """Test case class for vote operations"""
 
     def test_post_vote(self):
-        """test candidate can be posted by admin"""
+        """test a user can vote"""
         response = signup_admin(self)
         result = json.loads(response.data)
         self.assertIn("token", result)
