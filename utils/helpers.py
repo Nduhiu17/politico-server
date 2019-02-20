@@ -422,6 +422,11 @@ candidate_to_register4 = {
     "candidate": ""
 }
 
+vote =  {
+    "office": "1",
+    "candidate":"1"
+
+}
 
 def party_exists(party_id):
     party = Party.retrieve_by_id(id=party_id)
