@@ -2,7 +2,8 @@ import json
 
 from tests.base_test_case import BaseTestCase
 from utils.helpers import signup_admin, office_to_post, party_to_post, user, candidate_to_register, signup_user, user_u, \
-    candidate_to_register1, candidate_to_register2, candidate_to_register3, candidate_to_register4
+    candidate_to_register1, candidate_to_register2, candidate_to_register3, candidate_to_register4, \
+    candidate_to_register_non
 
 
 class TestCandidate(BaseTestCase):
@@ -77,6 +78,7 @@ class TestCandidate(BaseTestCase):
                                     headers={'Authorization': f'Bearer {result["token"]}',
                                              'Content-Type': 'application' '/json'})
         self.assertEqual(response.status_code, 400)
+
         self.assertEqual(response.json['error'], 'party and candidate ids are required')
         response = self.client.post('/api/v2/office/1/register', data=json.dumps(candidate_to_register2),
                                     headers={'Authorization': f'Bearer {result["token"]}',
@@ -104,3 +106,17 @@ class TestCandidate(BaseTestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json['error'], 'Empty strings are not allowed')
 
+    def test_posting_with_non_existing_party(self):
+        """test posting candindate with a non party"""
+        response = signup_admin(self)
+        result = json.loads(response.data)
+        self.assertIn("token", result)
+        response = self.client.post('/api/v2/offices', data=json.dumps(office_to_post),
+                                    headers={'Authorization': f'Bearer {result["token"]}',
+                                             'Content-Type': 'application' '/json'})
+        self.assertEqual(response.status_code, 201)
+        response = self.client.post('/api/v2/office/1/register', data=json.dumps(candidate_to_register_non),
+                                    headers={'Authorization': f'Bearer {result["token"]}',
+                                             'Content-Type': 'application' '/json'})
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.json['error'], 'No registered party with that id')

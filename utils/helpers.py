@@ -385,6 +385,11 @@ candidate_to_register = {
     "candidate": "2"
 }
 
+candidate_to_register_non = {
+    "party": "100000",
+    "candidate": "2"
+}
+
 user_u = {
     "firstname": "Antony1",
     "lastname": "Nduhiu1",
@@ -419,7 +424,8 @@ candidate_to_register4 = {
 
 
 def party_exists(party_id):
-    party = Party.retrieve_by_id(id=id)
+    party = Party.retrieve_by_id(id=party_id)
     if party:
-        return True
-    return False
+        return party
+    return None
+

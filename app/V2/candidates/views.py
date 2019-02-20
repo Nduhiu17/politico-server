@@ -32,16 +32,13 @@ def post(id):
             "status": 404,
             "error": "Office not found"
         }), 404)
-    if party_exists(party_id=data["party"]):
-        return make_response(jsonify({
-            "status": 404,
-            "error": "Party not found"
-        }), 404)
+
     if Candindate.find_candidate_using_id(id=data["candidate"]):
         return make_response(jsonify({
             "status": 409,
             "error": "Candindate already registered"
         }), 409)
+
     office = id
     party = data["party"]
     candidate = data["candidate"]
@@ -51,6 +48,11 @@ def post(id):
             "status": 400,
             "error": "Empty strings are not allowed"
         }), 400)
+    if not party_exists(party_id=data["party"]):
+        return make_response(jsonify({
+            "status": 404,
+            "error": "No registered party with that id"
+        }), 404)
 
     new_candidate = Candindate(id=None, office=id, party=party, candidate=candidate, date_created=datetime.now(),
                                date_modified=datetime.now())
