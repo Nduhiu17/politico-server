@@ -95,7 +95,7 @@ class Database:
         cursor = Database.connect_to_db()
         sql_command = """CREATE TABLE IF NOT EXISTS "public"."votes"  (
           id SERIAL PRIMARY KEY ,
-          createdOn INTEGER NOT NULL,
+          createdOn VARCHAR(80),
           createdBy INTEGER NOT NULL,
           office INTEGER NOT NULL,
           candidate INTEGER NOT NULL,

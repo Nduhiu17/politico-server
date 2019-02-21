@@ -10,6 +10,7 @@ from app.V2.candidates.views import candindate_v2
 from app.V2.database.db import Database
 from app.V2.offices.views import office_v2
 from app.V2.parties.views import base_v2
+from app.V2.votes.views import votes_base
 from config import DevelopmentConfig
 
 app = Flask(__name__)
@@ -23,6 +24,7 @@ app.register_blueprint(auth_route)
 app.register_blueprint(base_v2)
 app.register_blueprint(office_v2)
 app.register_blueprint(candindate_v2)
+app.register_blueprint(votes_base)
 jwt._set_error_handler_callbacks(base_v2)
 
 
