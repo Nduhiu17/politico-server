@@ -22,7 +22,7 @@ def post():
             "error": "office and candidate are required"
         }), 400)
 
-    if isinstance(data['office'], int) or isinstance(data['candidate'], int):
+    if not isinstance(data['office'], str) or not isinstance(data['candidate'], str):
         return make_response(jsonify({
             "status": 400,
             "error": "Post data of type strings"
