@@ -50,15 +50,7 @@ class TestAuth(BaseTestCase):
             response = self.client.post('api/v2/auth/signup', data=json.dumps(user7),
                                         headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 400)
-            response = self.client.post('api/v2/auth/signup', data=json.dumps(user8),
-                                        headers={'Content-Type': 'application' '/json'})
-            self.assertEqual(response._status_code, 400)
-            response = self.client.post('api/v2/auth/signup', data=json.dumps(user9),
-                                        headers={'Content-Type': 'application' '/json'})
-            self.assertEqual(response._status_code, 400)
-            response = self.client.post('api/v2/auth/signup', data=json.dumps(user10),
-                                        headers={'Content-Type': 'application' '/json'})
-            self.assertEqual(response._status_code, 400)
+
             response = self.client.post('api/v2/auth/signup', data=json.dumps(user11),
                                         headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 400)
@@ -103,5 +95,3 @@ class TestAuth(BaseTestCase):
             response = self.client.post('api/v2/auth/login', data=json.dumps(user16),
                                         headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 400)
-
-

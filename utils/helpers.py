@@ -135,12 +135,11 @@ user = {
     "lastname": "Nduhiu1",
     "othername": "Mundia1",
     "email": "nduhiu@gmail1.com",
-    "phonenumber": "07221172641",
+    "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
-    "nationalid": "abc12345",
+    "nationalid": "123456",
     "county": "nairobi",
-    "roles": "voter",
-    "password": "Password2015"
+    "password": "Password@123"
 }
 
 user31 = {
@@ -148,12 +147,11 @@ user31 = {
     "lastname": "Nduhiu1",
     "othername": "Mundia1",
     "email": "nduhjjiu@gmail1.com",
-    "phonenumber": "07221172641",
+    "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
-    "nationalid": "abc12345",
+    "nationalid": "123456",
     "county": "nairobi",
-    "roles": "voter",
-    "password": "Password2015"
+    "password": "Password@123"
 }
 
 user32 = {
@@ -161,12 +159,12 @@ user32 = {
     "lastname": 123456,
     "othername": 123456,
     "email": "nduhjjiu@gmail1.com",
-    "phonenumber": "07221172641",
+    "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
     "nationalid": "abc12345",
     "county": "nairobi",
     "roles": "voter",
-    "password": "Password2015"
+    "password": "Password@123"
 }
 
 user1 = {
@@ -174,12 +172,11 @@ user1 = {
     "lastname": "Nduhiu1",
     "othername": "Mundia1",
     "email": "nduhiu@gmail10.com",
-    "phonenumber": "07221172641",
+    "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
-    "nationalid": "abc12345",
+    "nationalid": "123654789",
     "county": "nairobi",
-    "roles": "voter",
-    "password": "Password2015"
+    "password": "Password@123"
 
 }
 
@@ -188,12 +185,11 @@ user2 = {
     "lastname": "",
     "othername": "Mundia1",
     "email": "nduhiu@gmail100.com",
-    "phonenumber": "07221172641",
+    "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
-    "nationalid": "abc12345",
+    "nationalid": "12456712345",
     "county": "nairobi",
-    "roles": "voter",
-    "password": "Password2015"
+    "password": "Password@123"
 
 }
 user3 = {
@@ -201,12 +197,12 @@ user3 = {
     "lastname": "Nduhiu1",
     "othername": "",
     "email": "nduhiu@gmail1000.com",
-    "phonenumber": "07221172641",
+    "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
     "nationalid": "abc12345",
     "county": "nairobi",
     "roles": "voter",
-    "password": "Password2015"
+    "password": "Password@123"
 
 }
 
@@ -215,12 +211,12 @@ user4 = {
     "lastname": "Nduhiu1",
     "othername": "",
     "email": "nduhiu@gmail10000.com",
-    "phonenumber": "07221172641",
+    "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
     "nationalid": "abc12345",
     "county": "nairobi",
     "roles": "voter",
-    "password": "Password2015"
+    "password": "Password@123"
 
 }
 
@@ -229,12 +225,12 @@ user5 = {
     "lastname": "Nduhiu1",
     "othername": "",
     "email": "",
-    "phonenumber": "07221172641",
+    "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
     "nationalid": "abc12345",
     "county": "nairobi",
     "roles": "voter",
-    "password": "Password2015"
+    "password": "Password@123"
 
 }
 
@@ -243,8 +239,8 @@ user6 = {
     "lastname": "Nduhiu1",
     "othername": "Mundia1",
     "email": "nduhiu@gmail1.com",
-    "phonenumber": "07221172641",
-    "password": "Password2015"
+    "phonenumber": "0722117264",
+    "password": "Password@123"
 }
 
 user7 = {
@@ -253,7 +249,7 @@ user7 = {
     "othername": "Mundia1",
     "email": "nduhiu@gmccail1.com",
     "roles": "voter",
-    "password": "Password2015"
+    "password": "Password@123"
 }
 
 user8 = {
@@ -261,10 +257,10 @@ user8 = {
     "lastname": "Nduhiu1",
     "othername": "Mundia1",
     "email": "nducczxchiugmail1com",
-    "phonenumber": "07221172641",
+    "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
     "roles": "voter",
-    "password": "Password2015"
+    "password": "Password@123"
 }
 
 user9 = {
@@ -272,7 +268,7 @@ user9 = {
     "lastname": "Nduhiu1",
     "othername": "Mundia1",
     "email": "nduhiu@gmail1.com",
-    "phonenumber": "07221172641",
+    "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
     "password": "",
     "roles": "voter"
@@ -283,7 +279,7 @@ user10 = {
     "lastname": 465456456456,
     "othername": 4565464564654,
     "email": 14514361414,
-    "phonenumber": 456444456346436,
+    "phonenumber": '0722117264',
     "passporturl": 336456465464654,
     "password": "",
     "roles": "voter"
@@ -294,10 +290,10 @@ user11 = {
     "lastname": "Nduhiu1",
     "othername": "Mundia1",
     "email": "nduhiugmail1com",
-    "phonenumber": "07221172641",
+    "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
     "roles": "voter",
-    "password": "Password2015"
+    "password": "Password@123"
 }
 
 user12 = {
@@ -312,7 +308,7 @@ user13 = {
 
 user14 = {
     "email": "nduhiu@gmgfhfghfail10.com",
-    "password": "Password2015"
+    "password": "Password@123"
 }
 user15 = {
     "email": "",
@@ -321,7 +317,7 @@ user15 = {
 
 user16 = {
     "email": "nduhiugmgfhfghfail10.com",
-    "password": "Password2015"
+    "password": "Password@123"
 }
 
 
@@ -346,12 +342,12 @@ admin = {
     "lastname": "Admin",
     "othername": "Admin",
     "email": "admin@gmail.com",
-    "phonenumber": "07221172641",
+    "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
     "nationalid": "123abc",
     "county": "nairobi",
     "roles": "admin",
-    "password": "Password2015"
+    "password": "Password@123"
 }
 
 
@@ -395,12 +391,12 @@ user_u = {
     "lastname": "Nduhiu1",
     "othername": "Mundia1",
     "email": "nduhiu100@gmail1.com",
-    "phonenumber": "07221172641",
+    "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
     "roles": "voter",
     "nationalid": "abc1234555",
     "county": "nairobi",
-    "password": "Password2015"
+    "password": "Password@123"
 }
 
 candidate_to_register1 = {
@@ -422,15 +418,15 @@ candidate_to_register4 = {
     "candidate": ""
 }
 
-vote =  {
+vote = {
     "office": "1",
-    "candidate":"1"
+    "candidate": "1"
 
 }
+
 
 def party_exists(party_id):
     party = Party.retrieve_by_id(id=party_id)
     if party:
         return party
     return None
-

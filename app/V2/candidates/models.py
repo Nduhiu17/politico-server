@@ -74,3 +74,31 @@ class Candindate:
             return candindate_objects
         except Exception:
             return []
+
+    @staticmethod
+    def to_json(rows):
+        return {
+            "party": rows[2],
+            "user": User.find_user_by_id(id=rows[3]),
+            "date_created": rows[3],
+            "date_modified": rows[3]
+        }
+
+    @staticmethod
+    def get_by_id(id):
+        """method to get a candidate by id"""
+        try:
+            cursor.execute("select * from candidates where id = %s", (id,))
+            retrieved = cursor.fetchone()
+            found = Candindate(id=retrieved[0], office=retrieved[1], party=retrieved[2],candidate=retrieved[3],date_created=retrieved[4],date_modified=retrieved[5])
+            return found
+        except Exception:
+            return False
+
+    @staticmethod
+    def get_candidates(office_id):
+        """method to get candidates using office if"""
+        cursor.execute(
+            f"SELECT * FROM public.candidates where office = {office_id};")
+        rows = cursor.fetchall()
+        return rows

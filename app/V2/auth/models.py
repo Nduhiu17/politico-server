@@ -30,12 +30,12 @@ class User:
 
     def save(self, *args):
         """method to save a user"""
-        self.firstname, self.lastname, self.othername, self.email, self.phonenumber, self.passporturl, self.roles, self.nationalid,self.county,self.password, self.date_created, self.date_modified = args
+        self.firstname, self.lastname, self.othername, self.email, self.phonenumber, self.passporturl, self.roles, self.nationalid, self.county, self.password, self.date_created, self.date_modified = args
         format_str = f"""
-                 INSERT INTO public.users (firstname,lastname,othername,email,phonenumber,passporturl,roles,nationalid,county,password,date_created,date_modified)
-                 VALUES ('{args[0]}','{args[1]}','{args[2]}','{args[3]}','{args[4]}','{args[5]}','{args[6]}','{args[
+                  INSERT INTO public.users (firstname,lastname,othername,email,phonenumber,passporturl,roles,nationalid,county,password,date_created,date_modified)
+                  VALUES ('{args[0]}','{args[1]}','{args[2]}','{args[3]}','{args[4]}','{args[5]}','{args[6]}','{args[
             7]}','{args[8]}','{args[9]}','{(datetime.now())}','{(datetime.now())}');
-                 """
+                  """
         cursor.execute(format_str)
 
     def json_dump(self):
@@ -86,9 +86,7 @@ class User:
         try:
             cursor.execute("select * from users where nationalid = %s", (id,))
             user = cursor.fetchone()
-            user = User(id=user[0], firstname=user[1], lastname=user[2], othername=user[3], email=user[4],
-                        phonenumber=user[5], passporturl=user[6], roles=user[7], nationalid=user[8], county=user[9],
-                        password=user[10], date_created=user[11], date_modified=user[12])
+            user = User(id=user[0], firstname=user[1], lastname=user[2],othername=user[3], email=user[4],phonenumber=user[5], passporturl=user[6], roles=user[7], nationalid=user[8], county=user[9],password=user[10], date_created=user[11], date_modified=user[12])
             return user.json_dump()
         except Exception:
             return False
@@ -99,9 +97,7 @@ class User:
         try:
             cursor.execute("select * from users where id = %s", (id,))
             user = cursor.fetchone()
-            user = User(id=user[0], firstname=user[1], lastname=user[2], othername=user[3], email=user[4],
-                        phonenumber=user[5], passporturl=user[6], roles=user[7], nationalid=user[8], county=user[9],
-                        password=user[10], date_created=user[11], date_modified=user[12])
+            user = User(id=user[0], firstname=user[1], lastname=user[2], othername=user[3], email=user[4],phonenumber=user[5], passporturl=user[6], roles=user[7], nationalid=user[8], county=user[9],password=user[10], date_created=user[11], date_modified=user[12])
             return user.json_dump()
         except Exception:
             return False
