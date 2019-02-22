@@ -1,10 +1,12 @@
 from datetime import datetime
 
 from flask import Blueprint, request, make_response, jsonify
+from flask_jwt_extended import jwt_required
 
 from app.V2.auth.models import User
 from app.V2.candidates.models import Candindate
 from app.V2.offices.models import Office
+from app.V2.votes.models import Vote
 from utils.helpers import admin_required, party_exists
 from utils.input_validators import Validate
 
@@ -68,6 +70,33 @@ def post(id):
 
     return make_response(jsonify({
         "status": 201,
-        "message":"Successfully created candidate",
+        "message": "Successfully created candidate",
         "data": [new_candidate.json_dumps()]
     }), 201)
+
+
+@candindate_v2.route('/office/<int:id>/results')
+@jwt_required
+def get(id):
+    office = Office.get_office_by_id(id)
+    if office is False:
+        return make_response(jsonify({
+            "status": 404,
+            "error": "office not found"
+        }), 404)
+
+    candidates = Candindate.get_candidates(id)
+
+    candidates_json = []
+    for candidate in candidates:
+        candidate_json = Candindate.to_json(candidate)
+        candidate_json['votes'] = Vote.get_number_of_votes(candidate[0])
+        candidates_json.append(candidate_json)
+
+    # return candidates_json
+    office['candindates'] = candidates_json
+
+    return make_response(jsonify({
+        "status": 200,
+        "data": office
+    }), 200)

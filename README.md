@@ -95,8 +95,19 @@ Run the tests by:
 | POST   | /api/v2/auth/signup                                 |End point to register a user         |
 | POST   | /api/v2/auth/login                                  | Endpoint to login a user            |
 | GET    | /api/v2/parties                                     | End point to get all parties        |
+| POST   | /api/v2/parties                                     | End point to post a party           |
+| GET    | /api/v2/parties/<int:id>                            | End point to get a party by id      |
+| GET    | /api/v2/offices                                     | End point to get all offices        |
+| POST   | /api/v2/offices                                     | End point to create an office       |
+| GET    | /api/v2/office/<int:id>                             | End point to get an office by id    |
+| POST   | /api/v2//office/<office-id>/register                | End point to register a candidate   |
+| POST   | /api/v2/votes                                       | End point to vote for a candidate   |
+| POST   | /api/v2//office/<office-id>/result                  | End point to get results for a election   |
+| POST   | /api/v2/petitions                                   | End point to create a petition      |
 
-### Getting Started with version two:
+
+
+#1## Getting Started with version two:
 
 **To start the app, please follow the instructions below:**
 
