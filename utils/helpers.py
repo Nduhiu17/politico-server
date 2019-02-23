@@ -167,6 +167,18 @@ user32 = {
     "password": "Password@123"
 }
 
+user33 = {
+    "firstname": "Antony1",
+    "lastname": "Nduhiu1",
+    "othername": "Mundia1",
+    "email": "nduhiu@gmail1.com",
+    "phonenumber": "0722117264",
+    "passporturl": "www.passport.com/ph1oto",
+    "nationalid": "123456",
+    "county": "nyeri",
+    "password": "Password@123"
+}
+
 user1 = {
     "firstname": "",
     "lastname": "Nduhiu1",
@@ -350,6 +362,19 @@ admin = {
     "password": "Password@123"
 }
 
+admin_one = {
+    "firstname": "Admin",
+    "lastname": "Admin",
+    "othername": "Admin",
+    "email": "admin2@gmail.com",
+    "phonenumber": "0722117264",
+    "passporturl": "www.passport.com/ph1oto",
+    "nationalid": "gjhgbjhghjgjhgj",
+    "county": "nairobi",
+    "roles": "admin",
+    "password": "Password@123"
+}
+
 
 def signup_admin(self):
     """function that registers an admin"""
@@ -381,9 +406,19 @@ candidate_to_register = {
     "candidate": "2"
 }
 
+candidate_to_register11 = {
+    "party": "1",
+    "candidate": "1"
+}
+
 candidate_to_register_non = {
     "party": "100000",
     "candidate": "2"
+}
+
+candidate_to_register_non_voter = {
+    "party": "1",
+    "candidate": "2000000"
 }
 
 user_u = {
@@ -421,7 +456,25 @@ candidate_to_register4 = {
 vote = {
     "office": "1",
     "candidate": "1"
+}
 
+vote1 = {
+    "candidate": "1"
+}
+
+vote2 = {
+    "office": 1,
+    "candidate": 1
+}
+
+vote3 = {
+    "office": "",
+    "candidate": ""
+}
+
+vote4 = {
+    "office": "1",
+    "candidate": "1"
 }
 
 
