@@ -45,7 +45,7 @@ class Validate:
         except ValueError:
             return True
         else:
-            if int(input_value) <= 8:
+            if int(input_value) < 8:
                 return False
             return True
 

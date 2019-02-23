@@ -10,8 +10,10 @@ Politico enables citizens give their mandate to politicians running for differen
 This Application is developed using python pure [Flask](http://flask.pocoo.org/docs/1.0/).The data is stored on python data structures
 
 
-### Heroku Link
-Please click [Heroku Link](https://politico-api-server.herokuapp.com/) to view api documentation and heroku api link
+### Documentation Link
+Please click [challenge two](https://politicoserver.docs.apiary.io/) to view challenge two api documentation
+
+Please click [challenge three](https://politico-api-server.herokuapp.com/) to view challenge two api documentation
 
 ### Git hub Link
 Please click [Github Link](https://github.com/Nduhiu17/politico-server/tree/develop) to view api the hosted source code on github.
