@@ -3,7 +3,7 @@ import json
 
 from tests.base_test_case import BaseTestCase
 from utils.helpers import user, user1, user2, user3, user4, user5, user6, user7, user11, user12, \
-    user13, user14, user15, user16, user31, user32, admin_one
+    user13, user14, user15, user16, user31, user32, admin_one, admin_two, user_b
 
 
 class TestAuth(BaseTestCase):
@@ -60,7 +60,7 @@ class TestAuth(BaseTestCase):
             response = self.client.post('api/v2/auth/signup', data=json.dumps(user),
                                         headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 201)
-            response = self.client.post('api/v2/auth/signup', data=json.dumps(user31),
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(user),
                                         headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 409)
 
@@ -101,9 +101,16 @@ class TestAuth(BaseTestCase):
             response = self.client.post('api/v2/auth/login', data=json.dumps(user16),
                                         headers={'Content-Type': 'application' '/json'})
             self.assertEqual(response._status_code, 400)
-            # response = self.client.post('api/v2/auth/signup', data=json.dumps(admin_one),
-            #                             headers={'Content-Type': 'application' '/json'})
-            # self.assertEqual(response._status_code, 400)
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(admin_one),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(admin_two),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 400)
+            response = self.client.post('api/v2/auth/signup', data=json.dumps(user_b),
+                                        headers={'Content-Type': 'application' '/json'})
+            self.assertEqual(response._status_code, 409)
+
 
 
 

@@ -137,7 +137,19 @@ user = {
     "email": "nduhiu@gmail1.com",
     "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
-    "nationalid": "123456",
+    "nationalid": "12345647489456",
+    "county": "nairobi",
+    "password": "Password@123"
+}
+
+user_b = {
+    "firstname": "Antony1",
+    "lastname": "Nduhiu1",
+    "othername": "Mundia1",
+    "email": "nduhihhu@gmail1.com",
+    "phonenumber": "0722117264",
+    "passporturl": "www.passport.com/ph1oto",
+    "nationalid": "12345647489456",
     "county": "nairobi",
     "password": "Password@123"
 }
@@ -149,7 +161,7 @@ user31 = {
     "email": "nduhjjiu@gmail1.com",
     "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
-    "nationalid": "123456",
+    "nationalid": "123445646464456",
     "county": "nairobi",
     "password": "Password@123"
 }
@@ -161,7 +173,7 @@ user32 = {
     "email": "nduhjjiu@gmail1.com",
     "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
-    "nationalid": "abc12345",
+    "nationalid": "1214112112345",
     "county": "nairobi",
     "roles": "voter",
     "password": "Password@123"
@@ -174,7 +186,7 @@ user33 = {
     "email": "nduhiu@gmail1.com",
     "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
-    "nationalid": "123456",
+    "nationalid": "12314454545456",
     "county": "nyeri",
     "password": "Password@123"
 }
@@ -186,7 +198,7 @@ user1 = {
     "email": "nduhiu@gmail10.com",
     "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
-    "nationalid": "123654789",
+    "nationalid": "12365474154489",
     "county": "nairobi",
     "password": "Password@123"
 
@@ -199,7 +211,7 @@ user2 = {
     "email": "nduhiu@gmail100.com",
     "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
-    "nationalid": "12456712345",
+    "nationalid": "1112122456712345",
     "county": "nairobi",
     "password": "Password@123"
 
@@ -211,7 +223,7 @@ user3 = {
     "email": "nduhiu@gmail1000.com",
     "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
-    "nationalid": "abc12345",
+    "nationalid": "35265645112345",
     "county": "nairobi",
     "roles": "voter",
     "password": "Password@123"
@@ -225,7 +237,7 @@ user4 = {
     "email": "nduhiu@gmail10000.com",
     "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
-    "nationalid": "abc12345",
+    "nationalid": "12354812345",
     "county": "nairobi",
     "roles": "voter",
     "password": "Password@123"
@@ -239,7 +251,7 @@ user5 = {
     "email": "",
     "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
-    "nationalid": "abc12345",
+    "nationalid": "12342345",
     "county": "nairobi",
     "roles": "voter",
     "password": "Password@123"
@@ -356,7 +368,7 @@ admin = {
     "email": "admin@gmail.com",
     "phonenumber": "0722117264",
     "passporturl": "www.passport.com/ph1oto",
-    "nationalid": "123abc",
+    "nationalid": "12345678",
     "county": "nairobi",
     "roles": "admin",
     "password": "Password@123"
@@ -367,12 +379,25 @@ admin_one = {
     "lastname": "Admin",
     "othername": "Admin",
     "email": "admin2@gmail.com",
-    "phonenumber": "0722117264",
+    "phonenumber": "334440722117264",
     "passporturl": "www.passport.com/ph1oto",
     "nationalid": "gjhgbjhghjgjhgj",
     "county": "nairobi",
     "roles": "admin",
     "password": "Password@123"
+}
+
+admin_two = {
+    "firstname": "Admin",
+    "lastname": "Admin",
+    "othername": "Admin",
+    "email": "admiuun2@gmail.com",
+    "phonenumber": "0722117264",
+    "passporturl": "www.passport.com/ph1oto",
+    "nationalid": "gjhgbjhghjgjhgj",
+    "county": "nairobi",
+    "roles": "admin",
+    "password": "Passw"
 }
 
 
