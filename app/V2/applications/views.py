@@ -56,8 +56,8 @@ def post():
             "error": "You have already submitted your application"
         }), 409)
 
-    new_application = Application(id=None,party_name=party_name,office_name=office_name,user_id=user_id,date_created=datetime.now())
-    new_application.save(party_name,office_name,user_id,datetime.now())
+    new_application = Application(id=None,party_name=party_name,office_name=office_name,user_id=user_id,date_created=datetime.now(),status="pending")
+    new_application.save(party_name,office_name,user_id,datetime.now(),"pending")
 
     return make_response(jsonify({
         "status": 201,
