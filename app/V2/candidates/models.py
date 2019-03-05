@@ -4,6 +4,7 @@ from datetime import datetime
 from app.V2.auth.models import User
 from app.V2.database.db import Database
 from app.V2.parties.models import Party
+from app.V2.votes.models import Vote
 
 cursor = Database.connect_to_db()
 Database.create_users_tables()
@@ -69,7 +70,7 @@ class Candindate:
             candindate_objects = []
             for item in rows:
                 candindate = User.find_user_by_id(id=item[3])
-                candindate['party']=Party.retrieve_by_id(id=int(item[1]))
+                candindate['party']= Party.retrieve_by_id(id=item[2])
                 candindate_objects.append(candindate)
             return candindate_objects
         except Exception:

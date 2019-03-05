@@ -502,6 +502,34 @@ vote4 = {
     "candidate": "1"
 }
 
+application_to_post = {
+    "office_name": "governor",
+    "party_name": "Democrat"
+}
+
+application_to_post1 = {
+    "office_name": "governo",
+    "party_name": "Democrat"
+}
+
+application_to_post2 = {
+    "office_name": "governor",
+    "party_name": "Democramlmkjkljkljkl"
+}
+
+application_to_post3 = {
+    "party_name": "Democrat"
+}
+
+application_to_post4 = {
+    "office_name": 123456788,
+    "party_name": 12345662155
+}
+
+application_to_post5 = {
+    "office_name": "",
+    "party_name": ""
+}
 
 def party_exists(party_id):
     party = Party.retrieve_by_id(id=party_id)

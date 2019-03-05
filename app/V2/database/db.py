@@ -106,6 +106,23 @@ class Database:
               """
         cursor.execute(sql_command)
 
+
+    @classmethod
+    def create_applications_table(cls):
+        """Method to create candidates applications table"""
+        cursor = Database.connect_to_db()
+        sql_command = """CREATE TABLE IF NOT EXISTS "public"."applications"  (
+        id SERIAL ,
+        party_name VARCHAR(255) NOT NULL,
+        office_name VARCHAR(255) NOT NULL,
+        user_id INTEGER NOT NULL,
+        date_created VARCHAR(80),
+        PRIMARY KEY (id),
+        FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+            )
+            """
+        cursor.execute(sql_command)
+
     @classmethod
     def drop_database_tables(cls):
         """Method to destroy database tables"""
@@ -129,4 +146,8 @@ class Database:
         # drop votes table
         sql_command = """ DROP TABLE IF EXISTS votes CASCADE;
                                     """
+        cursor.execute(sql_command)
+        # drop applications table
+        sql_command = """ DROP TABLE IF EXISTS applications CASCADE;
+                                        """
         cursor.execute(sql_command)

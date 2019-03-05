@@ -105,6 +105,7 @@ Run the tests by:
 | POST   | /api/v2//office/<office-id>/register                | End point to register a candidate   |
 | POST   | /api/v2/votes                                       | End point to vote for a candidate   |
 | POST   | /api/v2//office/<office-id>/result                  | End point to get results for a election   |
+| POST   | /api/v2/applications                                | End point to apply for candidature  |
 | POST   | /api/v2/petitions                                   | End point to create a petition      |
 
 

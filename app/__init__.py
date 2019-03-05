@@ -5,6 +5,7 @@ from flask_jwt_extended import JWTManager
 
 from app.V1.offices.views import V1
 from app.V1.parties.views import version1
+from app.V2.applications.views import application_v2
 from app.V2.auth.views import auth_route
 from app.V2.candidates.views import candindate_v2
 from app.V2.database.db import Database
@@ -25,6 +26,7 @@ app.register_blueprint(base_v2)
 app.register_blueprint(office_v2)
 app.register_blueprint(candindate_v2)
 app.register_blueprint(votes_base)
+app.register_blueprint(application_v2)
 jwt._set_error_handler_callbacks(base_v2)
 
 
