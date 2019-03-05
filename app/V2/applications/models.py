@@ -51,3 +51,17 @@ class Application:
             return retrieved_application.json_dumps()
         except Exception:
             return False
+
+    @classmethod
+    def get_all_applications(cls):
+        """method to get all applications from the database"""
+        cursor.execute(
+            f"SELECT * FROM public.applications")
+        rows = cursor.fetchall()
+        application_dicts = []
+
+        for item in rows:
+            application = Application(id=item[0],party_name=item[1],office_name=item[2],user_id=item[3],date_created=item[4])
+            application = application.json_dumps()
+            application_dicts.append(application)
+        return application_dicts

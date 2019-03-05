@@ -8,6 +8,7 @@ from app.V2.applications.models import Application
 from app.V2.auth.models import User
 from app.V2.offices.models import Office
 from app.V2.parties.models import Party
+from utils.helpers import admin_required
 from utils.input_validators import Validate
 
 application_v2 = Blueprint('application-v2', __name__, url_prefix='/api/v2')
@@ -62,5 +63,17 @@ def post():
         "status": 201,
         "data": new_application.json_dumps()
     }), 201)
+
+
+@application_v2.route('/applications', methods=['GET'])
+@admin_required
+def get():
+    """End point to get all applications"""
+    all_applications = Application.get_all_applications()
+    return make_response(jsonify({
+        "status": 200,
+        "data": all_applications
+    }), 200)
+
 
 
