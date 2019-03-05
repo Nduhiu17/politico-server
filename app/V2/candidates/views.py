@@ -3,6 +3,7 @@ from datetime import datetime
 from flask import Blueprint, request, make_response, jsonify
 from flask_jwt_extended import jwt_required
 
+from app.V2.applications.models import Application
 from app.V2.auth.models import User
 from app.V2.candidates.models import Candindate
 from app.V2.offices.models import Office
@@ -65,6 +66,7 @@ def post(id):
     new_candidate = Candindate(id=None, office=id, party=party, candidate=candidate, date_created=datetime.now(),
                                date_modified=datetime.now())
     Candindate.make_politician(candidate_id=candidate)
+    Application.make_done(user_id=candidate)
 
     new_candidate.save(office, party, candidate, datetime.now(), datetime.now())
 

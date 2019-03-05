@@ -117,6 +117,7 @@ class Database:
         office_name VARCHAR(255) NOT NULL,
         user_id INTEGER NOT NULL,
         date_created VARCHAR(80),
+        status VARCHAR(255) NOT NULL,
         PRIMARY KEY (id),
         FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
             )
