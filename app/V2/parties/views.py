@@ -23,7 +23,6 @@ def get():
 
 
 @base_v2.route('/parties', methods=['POST'])
-@jwt_required
 @admin_required
 def post():
     """End point to post a political party"""

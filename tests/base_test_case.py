@@ -24,3 +24,4 @@ class BaseTestCase(TestCase):
         Database.create_offices_table()
         Database.create_candidates_table()
         Database.create_votes_table()
+        Database.create_applications_table()

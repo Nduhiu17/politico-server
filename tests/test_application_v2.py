@@ -53,3 +53,12 @@ class TestApplication(BaseTestCase):
                                              'Content-Type': 'application' '/json'})
         self.assertEqual(response.status_code, 409)
 
+    def test_get_applications(self):
+        """test admin can get all applications"""
+        response = signup_admin(self)
+        result = json.loads(response.data)
+        self.assertIn("token", result)
+        response = self.client.get('/api/v2/applications', headers={'Authorization': f'Bearer {result["token"]}',
+                                                               'Content-Type': 'application' '/json'})
+        self.assertEqual(response.status_code, 200)
+
