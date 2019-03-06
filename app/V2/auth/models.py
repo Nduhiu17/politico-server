@@ -41,6 +41,7 @@ class User:
     def json_dump(self):
         """method that returns a user json"""
         return {
+            "id":self.id,
             "firstname": self.firstname,
             "lastname": self.lastname,
             "othername": self.othername,
