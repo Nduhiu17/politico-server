@@ -84,7 +84,7 @@ class Database:
         FOREIGN KEY (office) REFERENCES offices (id) ON DELETE CASCADE,
         FOREIGN KEY (party) REFERENCES parties (id) ON DELETE CASCADE,
         FOREIGN KEY (candidate) REFERENCES users (id) ON DELETE CASCADE,
-        PRIMARY KEY (id)
+        PRIMARY KEY (candidate)
             )
             """
         cursor.execute(sql_command)
