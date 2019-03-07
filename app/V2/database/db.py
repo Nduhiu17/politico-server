@@ -106,7 +106,6 @@ class Database:
               """
         cursor.execute(sql_command)
 
-
     @classmethod
     def create_applications_table(cls):
         """Method to create candidates applications table"""
