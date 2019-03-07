@@ -71,6 +71,7 @@ class Candindate:
             for item in rows:
                 candindate = User.find_user_by_id(id=item[3])
                 candindate['party']= Party.retrieve_by_id(id=item[2])
+                candindate['votes'] = Vote.get_number_of_votes(candidate_id=item[2])
                 candindate_objects.append(candindate)
             return candindate_objects
         except Exception:
