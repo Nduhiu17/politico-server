@@ -41,7 +41,7 @@ class Vote:
 
     @staticmethod
     def get_number_of_votes(candidate_id):
-        """method to get a office by id"""
+        """method to get votes for a candidate"""
         cursor.execute("select * from votes where candidate = %s", (candidate_id,))
         retrieved = cursor.fetchall()
         return len(retrieved)

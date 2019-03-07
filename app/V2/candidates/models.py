@@ -46,7 +46,7 @@ class Candindate:
     def json_dumps(self):
         """method to return a json object from the candidate details"""
         candidate_obj = {
-            "office":self.office,
+            "office": self.office,
             "party": self.party,
             "candidate": User.find_user_by_id(id=self.candidate),
             "date_created": self.date_created,
@@ -70,8 +70,8 @@ class Candindate:
             candindate_objects = []
             for item in rows:
                 candindate = User.find_user_by_id(id=item[3])
-                candindate['party']= Party.retrieve_by_id(id=item[2])
-                candindate['votes'] = Vote.get_number_of_votes(candidate_id=item[2])
+                candindate['party'] = Party.retrieve_by_id(id=item[2])
+                candindate['votes'] = Vote.get_number_of_votes(candidate_id=item[3])
                 candindate_objects.append(candindate)
             return candindate_objects
         except Exception:
@@ -92,7 +92,8 @@ class Candindate:
         try:
             cursor.execute("select * from candidates where id = %s", (id,))
             retrieved = cursor.fetchone()
-            found = Candindate(id=retrieved[0], office=retrieved[1], party=retrieved[2],candidate=retrieved[3],date_created=retrieved[4],date_modified=retrieved[5])
+            found = Candindate(id=retrieved[0], office=retrieved[1], party=retrieved[2], candidate=retrieved[3],
+                               date_created=retrieved[4], date_modified=retrieved[5])
             return found
         except Exception:
             return False
