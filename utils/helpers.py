@@ -480,7 +480,7 @@ candidate_to_register4 = {
 
 vote = {
     "office": "1",
-    "candidate": "1"
+    "candidate": "2"
 }
 
 vote1 = {
